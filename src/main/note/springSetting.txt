@@ -1,0 +1,33 @@
+[ 새 프로젝트 ]
+    JAVA 프로젝트 선택
+    1. 이름 : 아무거나
+    2. 위치 : 아무곳이나
+    3. 시스템빌드 : Gradle
+    4. JDK : 17(corretto) 아마존
+    5. Gradle : Grooby
+    [생성]
+
+[ 폴더 및 파일 구성 ]
+    .idea폴더         : 인텔리제이 세팅 파일
+    .src폴더          : (개발자가 작성한) 코드 파일
+    -> main 폴더
+    -> -> java폴더    : 백엔드 위주 파일
+    -> -> resources  : 프론트엔드, 부가파일 ㅡㄷㅇ
+    build.gradle     : 스프링 설정
+
+[ 스프링 설정 ]
+    0. https://start.spring.io/ 접속
+    1. project : Gradle - Grooby
+    2. Language : Java
+    3. Spring Boot : 3.5.4
+    4. Project Metadata : 프로젝트 부가 정보[기본값]
+    5. Packaging : Jar
+    6. Java : 17
+    7. Dependencies : MySQL Driver, Spring Web, Lombok 각각 검색 후 [선택]
+    8. EXPLORE 클릭 후 나오는 코드를 build.gradle에 붙여넣기
+
+[ 프로젝트 ]
+    1. build.gradle에서 우측 상단에 새로고침 코끼리 클릭. (ctrl + shift + O)
+    2. AppStart 실행
+    *. Gradle 환경에서는 jar 파일 안 써도 됨
+
