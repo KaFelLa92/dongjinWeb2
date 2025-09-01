@@ -31,3 +31,8 @@
     2. AppStart 실행
     *. Gradle 환경에서는 jar 파일 안 써도 됨
 
+[ VCS ]
+    1. Git에 프로젝트 공유
+    2. 깃 배쉬에서 설정
+       git config --global user.name "kafella92"
+       git config --global user.email "choidj10@gmail.com"
