@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset='utf-8'>
+    <title>소켓 실습</title>
+    <meta name='viewport' content='width=device-width, initial-scale=1'>
+    <!--부트스트랩 CDN CSS-->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <!--부트스트랩 CDN JS-->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+    <!-- <link rel='stylesheet' href='socket.css'> -->
+
+</head>
+
+<body>
+    <div class="container">
+        <h2> 소켓 실습입니다 </h2>
+        <h3> http://localhost:8080/day02/socket.html </h3>
+    </div>
+
+    <div class="container msgBox">
+        
+    </div>
+
+    <div class="container">
+        <input type="text" class="msg" />
+        <button type="button" onclick="onSend()" > 전송 </button>
+    </div>
+
+    <script src='socket.js'></script>
+</body>
+
+</html>

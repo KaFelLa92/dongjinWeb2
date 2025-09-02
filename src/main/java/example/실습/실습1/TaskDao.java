@@ -78,7 +78,7 @@ public class TaskDao {
 
     public void increaseStock() {
         try {
-            String sql = "update products set stock_quantity = stock_quantity -20 ";
+            String sql = "update products set stock_quantity = stock_quantity +20 where stock_quantity < 10 ";
             PreparedStatement ps = conn.prepareStatement(sql);
             ps.executeUpdate();
         } catch (Exception e) {

@@ -53,7 +53,7 @@ public class TaskService {
         List<Map<String, String>> lists = taskDao.printAllProducts();
         System.out.println("[1분] TaskService.printAllProducts");
         for (Map<String, String> list : lists) {
-            System.out.println("제품번호 : " + list.get("product_id") + " 제품명 : " + list.get("product_name") + " 현재 수량 : " + list.get("stock_quantity"));
+            System.out.println("제품번호 : " + list.get("product_id") + "\n제품명 : " + list.get("product_name") + "\n현재 수량 : " + list.get("stock_quantity") + "\n");
         }
     }
 
