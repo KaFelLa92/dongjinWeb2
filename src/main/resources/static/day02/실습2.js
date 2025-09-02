@@ -11,7 +11,7 @@ const client = new WebSocket('/alarm');
 
 client.onopen = (event) => {
     console.log("[클라이언트] 서버소켓과 연동 성공")
-    alert('익명의 유저가 접속했습니다.');
+    // alert('익명의 유저가 접속했습니다.'); 이건 유저만 받는 알림
 }
 
 /*
@@ -22,7 +22,7 @@ client.onopen = (event) => {
 
 client.onclose = (event) => {
     console.log("[클라이언트] 서버소켓과 연동 종료");
-    alert('익명의 유저가 퇴장했습니다.');
+    // alert('익명의 유저가 퇴장했습니다.');
 
 }
 
@@ -33,5 +33,5 @@ client.onmessage = (event) => {
     const alertBox = document.querySelector('.alertBox');
     let html = `<div> ${event.data} </div>`;
     alertBox.innerHTML += html;
-
+    alert(event.data); // 이렇게 하면 전체가 접속/퇴장에 따라 알러트를 받을 수 있음
 }
