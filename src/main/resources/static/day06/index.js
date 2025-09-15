@@ -120,6 +120,50 @@ console.log(obj5)       // ['유재석', 40] 값 차이는 없지만 새로운 �
 const obj6 = [ 6, 7 , ...obj3 ]; console.log(obj6);
 
 // [7] ** 구조 분해 할당 : 객체나 배열에서 값을 분해하는 방법
+const user = { name : "유재석" , age : 40 }
+const {name , ...age} = user;  // 객체내 key(속성명)와 동일하게 상수/변수 선언하면 분해 가능
+console.log(user)
+console.log(name, age)  // 유재석 40
+
+// [8] 비구조화 할당과 나머지 연산자
+const [num , ...intArray] = [ 1, 2, 3, 4 ];
+console.log(num); // 순서대로 (인덱스) 분해 후 나머지는 ...에 저장한다.
+console.log(intArray); 
+
+// [9] async/await 동기화
+    // 1. 비동기 fetch/axios , fetch 함수는 원래 비동기
+const method1 = ( ) => {
+    fetch( "url" )
+    .then( response => response.json )
+    .then(data => console.log(data))
+    .then(error => console.log(error))
+}
+    // 2. 동기 fetch
+const method2 = async ( ) => {
+    const obj = {
+        name,
+        age,
+        phone
+    }
+    const option = {
+        method : "POST",
+        headers : { "Content-Type" : "application/json"},
+        body : JSON.stringify(obj)
+    }
+    const response = await fetch("url" , option);
+    const data = await response.json();
+    console.log(data);
+}
+    // *** Promise : await는 promise를 사용하는 함수들에 적용된다. ***
+    // async와 await를 넣으면 동기 함수로 변경
+const promiseFunc = async ( ) => {
+    return await new Promise( (resolve , reject) => { // resolve : 성공매개변수 , reject : 실패매개변수
+        if( 10 > 13){ resolve("10이 13보다 크다.")}
+        else{ reject("10이 13보다 작다.")}
+    } )
+}
+
+
 
 
 

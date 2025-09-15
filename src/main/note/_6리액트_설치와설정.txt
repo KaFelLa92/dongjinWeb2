@@ -1,0 +1,89 @@
+[ react / 리액트 ] 
+    1. 정의 : 페이스북(메타) 회사에서 개발한 자바스크립트 라이브러리(함수 집합)
+        * 예] 좋아요 기능 , 댓글 쓰기 기능하면 페이지 전환해야하는 불편함.
+        * 즉] *** 페이지 전환이 없는 기능 구현 ***
+    2. 목적 : 
+        1) 자바스크립트에서 부족한 UI 조작과 효율성 보완
+        2) 웹/앱 유연한 UI 제공
+        3) 트렌디한 변화 빠르게 대응
+    3. 특징
+        1) 화면(HTML)을 컴포넌트(함수) 기반으로 제작 , 재사용 가능
+        2) 가상 DOM : 가상(가짜) HTMl 사용하여 성능 최적화 , HTML의 존재하지 않는 마크업 만들기
+            <div> <div2>
+        3) **훅( Hooks )** 지원 : 함수형 프로그래밍 방식으로 다양한 기능 지원
+    4. 사용처
+        1) 웹개발 : React
+        2) 앱개발 : React Native
+        3) 웹/앱개발 : React Native Web
+        현재 트렌드 : spring + react.js + next.js
+    5. 
+        - SPA( Single page Application ) 
+            1) HTML 한 장으로 구성 , CSR( Client side Rendering )방식
+            2) 클라이언트 사이드 렌더링이란? 사용자 브라우저에서 화면 전환
+            3) 장점 : 빠르다 , 서버 부담 적다
+            4) 단점 : 최초로딩 느리다, 검색엔진(SEO)에서 불리함 , 러닝커브가 있음(배울 게 많다)
+            예시] REACT( web2 ) , 
+            + 서버 사이드 렌더링을 고집하기 위해 Next.js 도입
+
+        - MPA( Multi page Application )
+            1) HTMl 여러 장으로 구성 , SSR( Server side Rendering )방식
+            2) 서버 사이드 렌더링이란? 서버가 제공하여 사용자 브라우저에서 화면 전환
+            3) 장점 : SEO 장점 , 필요한 데이터만 사용
+            4) 단점 : 새로고침(깜빡거림) , 서버 부담크다.
+            예시] JSP( web1 )
+
+[ react / 리액트 환경 설치 ]
+    - NODE.js란? 크롬(브라우저)엔진을 사용하여 HTML에 종속되지 않고 자체적인 자바스크립트를 실행하는 라이브러리
+    - NPM이란? node package manager : NODE.JS 기반의 라이브러리(패키지)를 설치/관리해주는 프로그램 VS (자바)그레이들
+    1. node.js 
+        1) https://nodejs.org/ko/download
+        2) Window 설치 프로그램(.msi) 클릭하여 설치
+            강의 기준 v22.19.0(LTS)
+    2. node.js 버전 확인
+        1) cmd에서 "node -v" 입력
+        2) v22.19.0 뜨면 된거임 , 버전 20 이상이면 상관 없음
+            npm -v , npx -v가 버전 8 이상이면 상관 없음 (10.9.3)
+    3. react 설치
+        1) 설치할 폴더(생성/선정)하기 , 강의기준 : 강의web2프로젝트 -> src -> main 폴더
+            src -> main 폴더 오른쪽 클릭 -> [통합 터미널 열기] 클릭
+            PS C:\Users\tj-bu-702-07\Desktop\cording\dongjinWeb2\src\main> 이렇게 나와야함
+                node -v에서 오류 나면 vscode 종료 후 재실행
+        2) npm create vite@latest '프로젝트명' --template react
+                npm -v에서 오류 나면
+        3) PowerShell을 관리자 권한으로 실행 -> Get-ExecutionPolicy 입력하면 Restricted(제한됨)나옴
+        4) Set-ExecutionPolicy RemoteSigned 입력 후 '예'누르면 통과
+            
+        5)  최초 리액트 실행 시 아래와 같이 입력 후 엔터
+            React -> JavaScript + SWC 선택 후 
+            cd reactapp : 폴더 이동
+            npm install : 현재 폴더내 라이브러리 전체 설치
+            npm run dev : 현재 폴더의 리액트 실행
+            한 번씩 실행
+            http://localhost:5173/ 리액트 인덱스 페이지
+
+        6) 리액트 종료
+            (1) vscode 종료 
+            (2) 터미널 종료
+            (3) 터미널에 'ctrl + c' 입력 후 종료
+
+        7) 설치된 리액트 재실행
+            (1) src -> main -> reactapp (리액트 최상위 폴더)를 오른쪽클릭 -> [통합 터미널 열기] 클릭
+            (2) npm run dev
+    4. react 프로젝트(패키지) 구조
+        -> node_module  : 현재 프로젝트 설치된 라이브러리 (주로 GTI 저장소 COMMIT하지 않는다.)
+            * 만약 해당 폴더가 없을 경우에 터미널에서 'npm install'을 입력해 생성하기
+        -> public       : 주로 정적파일 (로고, 파비콘 등)
+        -> src          : 주로 코드파일
+            -> App.jsx  : ***최상위 컴포넌트***
+            -> App.css  : 컴포넌트 css 파일 , 제거 가능
+            -> main.jsx : ***최상위 컴포넌트를 렌더링하는 파일***
+            -> main.css : 최상위 css 파일
+            추후 역할에 따른 패키지 구성할 예정
+            -> components 폴더
+            -> pages 폴더
+            -> api 폴더
+        -> index.html   : **react(spa)의 최상위 html 파일**
+        -> package.json : *****현재 프로젝트의 설정과 라이브러리 의존성 들어있는 파일*****
+
+
+
