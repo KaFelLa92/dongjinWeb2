@@ -1,0 +1,41 @@
+[ HTTP ] : 하이퍼 텍스트 전송 규약
+[ HTTP 응답(반환) 코드 ]
+    1. 서버(스프링)가 클라이언트(JS)의 요청 처리 결과를 숫자로 표현한 코드
+    2. 주요 코드
+        1) 2xx ( 요청 성공 의미 )
+            200 : *요청 성공 , 응답 데이터 포함*
+            201 : 요청 성공 , 저장 성공 의미 포함
+            202 : 요청 성공 , 아직 처리중 ( + 비동기 처리 )
+            204 : 요청 성공 , 응답 데이터 없음(void) (JSON 변환이 안 됨)
+        2) 3xx ( 리다이렉션 , 이동 의미 )
+            301 : 요청한 정보가 다른 URL로 이동
+            302 : 임시적으로 다른 URL로 이동
+            304 : 캐시( 임시저장소 / 1회 이상 조회한 기록 ) 사용 ( + 빠른 조회 )
+        3) 4xx ( 클라이언트 오류 )
+            400 : 요청 형식 오류 , 쿼리스트링/BODY 등 잘못됨
+            401 : 인증 실패 , 로그인 안 됨
+            403 : 접근 권한 없음 , 권한 거부
+            404 : ***요청한 경로/자원이 없음*** (URL 오류)
+            405 : *HTTP Method 잘못됨*
+            409 : 자료가 중복일 때 ( + 아이디 중복 )
+            415 : *"Content-Type" 잘못됨*
+        4) 5xx ( 서버 오류 )
+            500 : ***서버(스프링/자바) 내부 오류***
+            503 : 서버 (스레드)과부하 , 점검 알림
+
+[ 스프링에서 HTTP 응답코드 반환 ]
+    1. ResponseEntity< T > : Spring에서 HTTP 응답 상태 코드와 본문(응답자료)을 같이 보내는 클래스
+        <T>는 반드시 응답자료를 보낸다. 주의할 점 : **제네릭은 기본타입이 불가능**
+
+    * 제네릭이란 ? 클래스내 멤버변수 타입을 클래스 설계시 정하지 않고 객체 생성시 멤버변수 타입을 정하는 문법
+    예] ResponseEntity< T > , List < T > , Map < T , T2 >
+        1. List 객체를 만들 때 List에 저장할 객체들을 List 클래스가 정하는 게 아니라, List 객체를 생성할 때 정한다.
+        2. List< 라면 > : 라면 리스트 , List< 콜라 > : 콜라 리스트
+        즉] ResponseEntity< T > , ResponseEntity< 응답할자료 >
+            WEB1 : MemberDto , WEB2 : ResponseEntity<MemberDto>
+
+    2. 사용법 : Controller 클래스에서 사용된다.
+        web1 : int method1(){ return 1 }
+                MemberDto method1(){ return memberDto }
+        web2 : ResponseEntity<Integer> method2(){ return ResponseEntity.status(201).body(1); }
+                ResponseEntity<MemberDto> method2() { return ResponseEntity.status(상태코드).body(memberDto) }

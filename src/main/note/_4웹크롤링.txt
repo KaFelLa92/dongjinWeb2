@@ -1,0 +1,50 @@
+[ 웹 크롤링 ]
+    1. 정의 : 인터넷 웹 페이지에서 원하는 데이터(html)를 수집하는 기술
+
+    2. 웹 페이지 구동 원리 두 가지
+        1) 정적 페이지 : html 소스에 데이터가 있는 경우 , 즉] 게시물의 정보가 포함된 HTML
+            * Jsoup 라이브러리 사용
+        2) 동적 페이지 : JS가 html 소스에 데이터를 넣어주는 경우 , 즉] 게시물의 정보가 없는 HTML (*수업 내용 fetch)
+            * Selenium 라이브러리 사용 ( js가 로딩 후 데이터를 HTML에 표시 )
+
+    3. 목적
+        1) (타인의) 데이터 수집 : 뉴스 , 상품 , 날씨 , 위치 등등
+        2) 데이터 분석 : 수집한 자료를 저장 -> 통계 -> 학습(AI)
+        3) 업무 효율 : 자동 특정 버튼 클릭 , 자동 아이디/비밀번호 입력
+
+    4. robots.txt : 웹사이트 루트 경로에 있는 자동화(크롤링) 접근 규칙 파일
+        1) 웹페이지주소/robots.txt
+            https://www.daum.net/robots.txt
+        2) 접근 권한
+            Allow : 접근 허용
+            Disallow : 접근 금지
+        * 즉] 법적 강제성은 없지만, 웹크롤링 한 번이 REST 요청 1번이라서 DB 작동 -> 과부하
+
+[ Jsoup ]
+    1. 설치 : https://mvnrepository.com/
+        1) Jsoup 검색하고 Jsoup Java HTML Parser 찾기
+        2) 의존성 추가 : Gradle
+            Scope :Compile Format : Groovy Short
+            // https://mvnrepository.com/artifact/org.jsoup/jsoup
+            implementation 'org.jsoup:jsoup:1.21.2'
+
+    2. 주요 메소드
+        1) 크롤링할 웹주소의 HTML을 자바의 Document 객체로 가져오기
+            Document document = Jsoup.connect( 크롤링할웹주소 ).get()
+        2) 특정한 마크업 가져오기
+            Element element = document.selectFirst( "css선택자" );
+                예] <a href=""> 부평역 </a>
+            Elements elements = document.select( "css선택자여러개" );
+                예] <a href=""> 부평역 </a> , <a href=""> 부천역 </a>
+        3) 마크업(요소)의 데이터 가져오기
+            String text = element.text();
+        4) 마크업(요소)의 속성값 가져오기
+            String attr = element.attr("속성명");
+                예] <img src="localhost:8080" /> --> localhost:8080만 빼온다
+
+[ Selenium ]
+    1. 그레이들 설치 : https://mvnrepository.com/
+        1) Selenium 검색하고 Selenium Java
+        2) 최신 버전 입장 후 그레이들, 컴파일, 그루비 숏의 코드 복사하여 build.gradle에 복사
+        3) WebDriverManager 검색 후 셀레니움이 같이 있는 최신 버전 그레이들 가져오기
+        https://mvnrepository.com/artifact/io.github.bonigarcia/webdrivermanager
