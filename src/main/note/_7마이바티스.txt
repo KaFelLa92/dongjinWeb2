@@ -27,3 +27,20 @@
         # 3. 연동할 db서버의 비밀번호 , 주의할점 : 앞뒤 띄어쓰기 포함됨!
         spring.datasource.password=1234
 
+[ MyBatis 사용법 ] * Dao를 대체함
+    1. 인터페이스 생성한다.
+    2. 인터페이스 위에 @Mapper 주입한다.
+    3. SQL DML 어노테이션 사용한다.
+        Insert : @Insert("SQL작성")
+        Select : @Select("SQL작성")
+        Delete : @Delete("SQL작성")
+        Update : @Update("SQL작성")
+    4. SQL 문법내 매개변수는 #{ 매개변수 } 표현
+    5. 추상메소드 선언
+        매개변수 : SQL 문법내 매개변수 #{ }
+        반환타입 : SQL 결과 매핑
+            int : insert/update/delete SQL 처리한 레코드 수 반환
+            Map/Dto/List : select 조회 결과 레코드 자료들을 반환
+        * 주의할점 : 매핑할 레코드의 컬럼명과 자바의 속성명은 일치해야한다.
+
+
