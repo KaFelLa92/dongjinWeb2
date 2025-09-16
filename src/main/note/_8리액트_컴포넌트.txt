@@ -1,0 +1,53 @@
+[ 컴포넌트 ]
+    1. 정의 : 리액트에서 독립적이고 *재사용* 가능한 함수
+    2. 특징 : HTML + JS + CSS를 하나의 컴포넌트로 구성
+
+[ 컴포넌트 만들기 ]
+    (1) function
+    (2) 컴포넌트명 : 아무거나 하되 default 컴포넌트 파일명 일치
+    (3) ( props ) : 속성(property)으로 <컴포넌트 속성=값 속성=값 />
+    (4) { } : 중괄호 안에서 JS와 HTML 작성한다.
+    (5) return : HTML과 JS가 혼합된 JSX 문법을 사용할 수 있다. JSP(HTML+JAVA) JSX(HTML+JS)
+    (6) jsx파일내 export default 함수를 정의한다.
+
+[ 컴포넌트 함수 선언 ]
+    export default function Component(props) {
+    // -----> JS 코드 Start
+
+    // <----- JS 코드 End : return 전까지
+    
+    // -----> JSX 코드 Start : return 전까지 * return부터는 JSX 문법
+    return (<> </>)
+    // <----- JSX 코드 End
+    } // func end
+
+[ 컴포넌트 불러오기 ]
+    (1) 다른 js(jsx) 파일 일때
+        import 컴포넌트명 from 'jsx파일경로'
+        <컴포넌트명 />
+    (2) 같은 js(jsx) 파일 일때
+        <컴포넌트명 />
+
+[ JSX ]
+    1. 정의 : 컴포넌트 안에서 HTML과 *비슷한 문법*을 사용할 수 있도록 만든 확장 문법
+    2. 주의할 점 : JSX 문법은 브라우저(크롬)가 해석할 수 없다. (그러므로 리액트의 렌더링이 필요하다)
+    3. 특징
+        1) JSX는 HTML처럼 보이지만 HTML과 다르다. << 가상 DOM 사용 >>
+            조건1 : 마크업/컴포넌트 close 필수 사용 , 강력한 검사
+                <input >    [X]
+                <input />   [O]
+            조건2 : 반드시 전체를 감싸는 상위 요소(dom) 필수 
+                * 함수이기 때문에, 반환값을 하나로 인식하도록 해야함
+                <div> </div> 또는 <> </>
+                1. return <div> 내용물 </div>
+                2. return <> 내용물 </>
+            조건3 : 2줄 이상 요소가 되는 경우 관례적으로 ( ) 소괄호 묶는다.
+                return (<>
+                
+                        </>);
+        2) JSX 문법에서 JS 표현식을 사용 , 표현식이란 정의/선언/생성 부 불가능하다.
+            <div> { JS표현식 } </div>
+        3) JSX 주석 , HTML 주석은 불가능하다. 즉 { }중괄호 안에서 JS 주석 사용한다.
+            { /* 주석처리 */ }
+
+
