@@ -27,6 +27,7 @@ export default function Component3(props) {
         {/* 다른 컴포넌트 포함하면서 속성(props)/자료 전달 */}
         <input value = "유재석" />
         <SubCom1 key1 = "value1" key2 = "40" />
+        <SubCom1 key1 = "유재석" key2 = "60" /> { /* 이 컴포넌트 사용 */ }
     </>);
 
     // <------ JSX 코드 End

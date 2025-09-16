@@ -30,7 +30,9 @@ const create = createRoot( root );
 import Component1 from './example/day01/Component1';
 import Component2 from './example/day01/Component2';
 import Component3 from './example/day01/Component3';
+import Task1 from './example/day01/Task1';
+import Task2 from './example/day01/Task2';
 // [2] 렌더링하기 * 렌더는 한 번만 가능하다. *
 // create.render( <div> <Component1 /> </div> );
 // create.render( <div> <Component2 /> </div> );
-create.render( <div> <Component3 /> </div> );
+create.render( <div> <Task2 /> </div> );
