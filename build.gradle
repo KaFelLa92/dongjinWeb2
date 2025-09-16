@@ -27,7 +27,9 @@ repositories {
 dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-web'
     compileOnly 'org.projectlombok:lombok'
+    // SQL
     runtimeOnly 'com.mysql:mysql-connector-j'
+    // 롬복
     annotationProcessor 'org.projectlombok:lombok'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
     testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
@@ -39,6 +41,8 @@ dependencies {
     implementation 'org.seleniumhq.selenium:selenium-java:4.35.0'
     // Selenium 브라우저 매니저 (크롬)
     implementation 'io.github.bonigarcia:webdrivermanager:6.3.1'
+    // MyBatis
+    implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:3.0.5'
 }
 
 tasks.named('test') {

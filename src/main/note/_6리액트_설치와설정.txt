@@ -43,7 +43,7 @@
         1) cmd에서 "node -v" 입력
         2) v22.19.0 뜨면 된거임 , 버전 20 이상이면 상관 없음
             npm -v , npx -v가 버전 8 이상이면 상관 없음 (10.9.3)
-    3. react 설치
+    3. react 설치 , (VSCODE) * 프론트와 백은 따로 관리하는 게 원칙이나, 수업이니까 한 번에 깃 커밋푸시 *
         1) 설치할 폴더(생성/선정)하기 , 강의기준 : 강의web2프로젝트 -> src -> main 폴더
             src -> main 폴더 오른쪽 클릭 -> [통합 터미널 열기] 클릭
             PS C:\Users\tj-bu-702-07\Desktop\cording\dongjinWeb2\src\main> 이렇게 나와야함
@@ -83,7 +83,7 @@
             -> pages 폴더
             -> api 폴더
         -> index.html   : **react(spa)의 최상위 html 파일**
-        -> package.json : *****현재 프로젝트의 설정과 라이브러리 의존성 들어있는 파일*****
+        -> package.json : *****현재 프로젝트의 설정과 라이브러리 의존성 들어있는 파일. 이걸 백업하면 내 설정 가져다 쓸 수 있음*****
 
 
 

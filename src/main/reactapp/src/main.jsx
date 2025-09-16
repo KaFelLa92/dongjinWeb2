@@ -18,10 +18,18 @@ const root = document.querySelector('#root');
 const create = createRoot( root );
 // 4. root에 렌더링하기
   // 4-1 : 렌더링할 컴포넌트(화면함수) 가져오기
-  import App from './App.jsx';
+  // import App from './App.jsx';
   // 4-2 : 렌더링하기
-  create.render( <App></App> );
+  // create.render( <App></App> );
 
 // * 2 ~ 4-2 요약 createRoot( document.querySelector('#root')).render( <최초출력함수명 />);
 // createRoot( document.querySelector('#root')).render( <App />);
+
+// day01
+// [1] 렌더링 컴포넌트 가져오기
+import Component1 from './example/day01/Component1';
+import Component2 from './example/day01/Component2';
+// [2] 렌더링하기 * 렌더는 한 번만 가능하다. *
+// create.render( <div> <Component1 /> </div> );
+create.render( <div> <Component2 /> </div> );
 
