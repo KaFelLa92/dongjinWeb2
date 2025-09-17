@@ -25,10 +25,6 @@ const Article = ({ title, author, content }) => {
 
     return (<>
 
-        {obj.map((Article) => (
-            
-        ))}
-
         <h2> {obj[0].title} </h2>
         <h4> 작성자 : {obj[0].author} </h4>
         <p> {obj[0].content} </p>

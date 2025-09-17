@@ -1,0 +1,19 @@
+#container {
+    max-width: 1280px;
+}
+
+ul {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid #f2f2f2;
+}
+
+span {
+    font-weight: bold;
+}
+
+input {
+    border-radius: 3px;
+    border : 1px solid #d9d9d9;
+}
+

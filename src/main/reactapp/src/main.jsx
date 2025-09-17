@@ -32,7 +32,14 @@ import Component2 from './example/day01/Component2';
 import Component3 from './example/day01/Component3';
 import Task1 from './example/day01/Task1';
 import Task2 from './example/day01/Task2';
+import Component4 from './example/day02/Component4';
+import Component5 from './example/day02/Component5';
+import Component6 from './example/day02/Component6';
+import Component7 from './example/day02/Component7';
+import Task3 from './example/day02/Task3';
+import Task4 from './example/day02/Task4';
+
 // [2] 렌더링하기 * 렌더는 한 번만 가능하다. *
 // create.render( <div> <Component1 /> </div> );
 // create.render( <div> <Component2 /> </div> );
-create.render( <div> <Task2 /> </div> );
+create.render( <div> <Task4 /> </div> );
