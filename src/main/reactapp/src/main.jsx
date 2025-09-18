@@ -25,13 +25,15 @@ const create = createRoot( root );
 // * 2 ~ 4-2 요약 createRoot( document.querySelector('#root')).render( <최초출력함수명 />);
 // createRoot( document.querySelector('#root')).render( <App />);
 
-// day01
 // [1] 렌더링 컴포넌트 가져오기
+// day01
 import Component1 from './example/day01/Component1';
 import Component2 from './example/day01/Component2';
 import Component3 from './example/day01/Component3';
 import Task1 from './example/day01/Task1';
 import Task2 from './example/day01/Task2';
+
+// day02
 import Component4 from './example/day02/Component4';
 import Component5 from './example/day02/Component5';
 import Component6 from './example/day02/Component6';
@@ -39,7 +41,14 @@ import Component7 from './example/day02/Component7';
 import Task3 from './example/day02/Task3';
 import Task4 from './example/day02/Task4';
 
+// day03
+import Component8 from './example/day03/Component8';
+import Component9 from './example/day03/Component9';
+import Component10 from './example/day03/Component10';
+import Task5 from './example/day03/Task5';
+import Task51 from './example/day03/Task51';
+
 // [2] 렌더링하기 * 렌더는 한 번만 가능하다. *
 // create.render( <div> <Component1 /> </div> );
 // create.render( <div> <Component2 /> </div> );
-create.render( <div> <Task4 /> </div> );
+create.render( <div> <Task51/> </div> );
