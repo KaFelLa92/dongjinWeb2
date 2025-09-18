@@ -5,7 +5,7 @@ use springweb2;
 create table members (
 	mno int auto_increment primary key,
     name varchar(20) not null,
-	phone varchar(20) not null,
+	phone varchar(20) not null unique,
     age int not null
 );
 

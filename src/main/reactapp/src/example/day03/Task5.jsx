@@ -10,11 +10,20 @@ export default function Task5(props) {
 
     // [1] 등록
     const memberAdd = async () => {
-        const response = await axios.post("http://localhost:8080/members", input) // 인풋에 넣은 값을 서버로 전송
-        console.log(response.data)
-        console.log(response.status)
-        memberPrint(); // 전체조회 초기화
-        setInput({ name: "", phone: "", age: "" }); // 등록값 초기화
+        try {
+            const response = await axios.post("http://localhost:8080/members", input) // 인풋에 넣은 값을 서버로 전송
+            console.log(response.data)
+            console.log(response.status)
+            memberPrint(); // 전체조회 초기화
+            setInput({ name: "", phone: "", age: "" }); // 등록값 초기화
+        } catch (error) {
+            // 서버 메시지 받기
+            if(error.response && error.response.status == 400){
+                alert("입력 오류 : " + error.response.data);
+            } else {
+                alert("알 수 없는 오류 발생. 관리자 문의 010-xxxx-xxxx")
+            }
+        }
     }
 
     // [*] 전체조회 데이터 확인 useState
@@ -44,17 +53,17 @@ export default function Task5(props) {
         <div id="container">
             <h2> 전화번호부 </h2>
             <div id="inputBox">
-                <input placeholder="성명" name="name" value={input.name} 
-                onChange={(e) => setInput({ ...input, [e.target.name]: e.target.value })} 
-                onKeyDown={(e) => e.key == 'Enter' && memberAdd()} />
+                <input placeholder="성명" name="name" value={input.name}
+                    onChange={(e) => setInput({ ...input, [e.target.name]: e.target.value })}
+                    onKeyDown={(e) => e.key == 'Enter' && memberAdd()} />
 
-                <input placeholder="연락처(예: 010-1234-5678)" name="phone" value={input.phone} 
-                onChange={(e) => setInput({ ...input, [e.target.name]: e.target.value })} 
-                onKeyDown={(e) => e.key == 'Enter' && memberAdd()} />
+                <input placeholder="연락처(예: 010-1234-5678)" name="phone" value={input.phone}
+                    onChange={(e) => setInput({ ...input, [e.target.name]: e.target.value })}
+                    onKeyDown={(e) => e.key == 'Enter' && memberAdd()} />
 
-                <input placeholder="나이" name="age" value={input.age} 
-                onChange={(e) => setInput({ ...input, [e.target.name]: e.target.value })} 
-                onKeyDown={(e) => e.key == 'Enter' && memberAdd()} />
+                <input placeholder="나이" name="age" value={input.age}
+                    onChange={(e) => setInput({ ...input, [e.target.name]: e.target.value })}
+                    onKeyDown={(e) => e.key == 'Enter' && memberAdd()} />
 
                 <button onClick={memberAdd}> 등록 </button>
             </div>
