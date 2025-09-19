@@ -1,0 +1,16 @@
+.cineUl {
+    display: flex;
+}
+
+.cineDiv {
+    display: flex;
+
+}
+
+#cineContainer {
+    border: 3px solid #f2f2f2;
+}
+
+#agoraContainer {
+    border: 1px solid #f2f2f2;
+}

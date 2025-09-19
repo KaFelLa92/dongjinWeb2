@@ -48,7 +48,10 @@ import Component10 from './example/day03/Component10';
 import Task5 from './example/day03/Task5';
 import Task51 from './example/day03/Task51';
 
+// eval6
+import Eval6 from './eval6/eval6';
+
 // [2] 렌더링하기 * 렌더는 한 번만 가능하다. *
 // create.render( <div> <Component1 /> </div> );
 // create.render( <div> <Component2 /> </div> );
-create.render( <div> <Task5/> </div> );
+create.render( <div> <Eval6/> </div> );
