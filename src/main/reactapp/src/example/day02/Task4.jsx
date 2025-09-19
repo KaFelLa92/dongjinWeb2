@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import './Task4.css'
 
 export default function Task4(props) {
 

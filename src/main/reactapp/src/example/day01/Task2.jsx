@@ -5,7 +5,6 @@ const products = [
 ];
 
 // [3] CSS 파일 불러오기 : import 'CSS파일경로'
-import './Task2.css'
 
 // [1] 대표(default) 컴포넌트 만들기
 export default function Task2(props) {
