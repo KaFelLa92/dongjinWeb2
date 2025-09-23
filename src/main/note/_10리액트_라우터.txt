@@ -1,0 +1,29 @@
+[ 라우터 ]
+    - 리액트는 SPA( 싱글 페이지 애플리케이션 = HTML 1개 = HTML 전환 X )
+        -> 컴포넌트를 변경하는 가상의 주소 -> REACT ROUTER
+    1. 정의 : SPA 방식에서 화면 전환시 새로고침 없이 컴포넌트 변경 지원
+    2. 사용법
+        1) 설치 : 'npm i react-router-dom'
+        2) Root 컴포넌트를 <BrowserRouter>로 감싼다.
+        3) 연결할 각 가상의 URL과 컴포넌트를 정의한다.
+            <Routes>
+                <Route path="가상URL" element = { <컴포넌트명 /> } />
+            </Routes>
+        *) 존재하지 않는 주소를 하나의 컴포넌트로 연결
+            <Routes>
+                <Route path="*" element = { <예외컴포넌트명 /> } />
+            </Routes>
+        *) path 매개변수 방식 ** queryString은 정의하지 않는다 **
+            <Routes>
+                <Route path="가상URL/:매개변수명1/:매개변수명2" element = { <컴포넌트명 /> } />
+            </Routes>
+        4) <a> 마크업 대신 <Link>
+            <Link to="가상URL"> 텍스트 </Link>
+        5) location.href 대신에 useNavigate()
+            const navigate = useNavigate();
+            navigate( "가상URL" );
+        6) queryString 방식
+            const [ searchParams ] useSearchParams();
+            const 변수명 = searchParams.get('매개변수명');
+        7) path 방식
+            const { 변수명 } = useParams();

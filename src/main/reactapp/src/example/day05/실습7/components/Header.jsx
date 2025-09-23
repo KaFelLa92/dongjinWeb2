@@ -1,0 +1,34 @@
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+import { logout } from "../../userSlice";
+
+export default function Header(props) {
+
+    // [1] store 가져오기
+    const dispatch = useDispatch();
+    const { isAuthenticated } = useSelector((state) => state.user)
+    console.log(isAuthenticated);
+
+    // [2] logout
+    const logoutHandle = () => {
+        alert('로그아웃 되었습니다. 홈 화면으로 이동합니다.')
+        navigate("/")
+        dispatch(logout())
+    }
+
+    return (<>
+        <div>
+            <ul>
+                <li> <Link to="/"> 홈 </Link></li>
+                {isAuthenticated ? (<>
+                    <li> <Link to="/dashboard"> 대시보드 </Link></li>
+                    <li> <Link to="/profile"> 프로필 </Link></li>
+                    <li> <Link to="/" onClick={logoutHandle}> 로그아웃 </Link></li>
+                </>
+                ) : (
+                    <li> <Link to="/login"> 로그인 </Link> </li>
+                )}
+            </ul>
+        </div>
+    </>)
+}

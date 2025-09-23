@@ -1,0 +1,14 @@
+example
+-> day05
+--> 실습7           
+----> components    : 컴포넌트들을 저장하는 폴더
+    -> Header.jsx
+----> pages         : page 컴포넌트들을 저장하는 폴더
+    -> HomePage.jsx
+    -> LoginPage.jsx
+    -> ProfilePage.jsx
+----> store         : 리덕스 관련 store와 slice js 저장하는 폴더
+    -> store.jsx
+    -> userStore.jsx
+----> App.jsx       : 최초 main.jsx에서 렌더링되는 컴포넌트
+main.jsx            : 최초 컴포넌트를 렌더링 하는 파일
