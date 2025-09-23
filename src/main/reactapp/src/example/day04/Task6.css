@@ -1,0 +1,18 @@
+#mainContainer {
+   border-left: 1.5px solid #d9d9d9;
+   padding-left: 30px;
+}
+
+.inputContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+}
+
+#sidebarContainer {
+    display: flex;
+}
+
+#sidebarUl {
+    margin-right: 30px;
+}

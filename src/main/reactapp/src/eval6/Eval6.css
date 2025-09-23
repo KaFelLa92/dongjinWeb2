@@ -3,7 +3,7 @@
    ==================================================================== */
 
 /* --- 기본 & 전체 레이아웃 --- */
-body {
+#eval6Body {
     background-color: #121212;
     /* 어두운 배경색 */
     color: #e0e0e0;
@@ -14,7 +14,7 @@ body {
     box-sizing: border-box;
 }
 
-#container {
+#eval6Container {
     max-width: 800px;
     margin: 20px auto;
     padding: 24px;
@@ -25,15 +25,15 @@ body {
 }
 
 /* --- 타이포그래피 --- */
-h2,
-h3,
-h4,
-h5 {
+#eval6Body h2,
+#eval6Body h3,
+#eval6Body h4,
+#eval6Body h5 {
     color: #ffffff;
     margin-top: 0;
 }
 
-#container>h2 {
+#eval6Container>h2 {
     text-align: center;
     font-size: 2rem;
     color: #e50914;
@@ -41,7 +41,7 @@ h5 {
     margin-bottom: 30px;
 }
 
-#container>h4,
+#eval6Container>h4,
 #cineContainer>h4 {
     border-bottom: 1px solid #444;
     padding-bottom: 10px;
@@ -49,8 +49,8 @@ h5 {
 }
 
 /* --- 최상단 영화 등록 폼 --- */
-#container>input,
-#container>textarea {
+#eval6Container>input,
+#eval6Container>textarea {
     display: block;
     width: calc(100% - 24px);
     /* padding 고려 */
@@ -63,12 +63,12 @@ h5 {
     font-size: 1rem;
 }
 
-#container>textarea {
+#eval6Container>textarea {
     min-height: 100px;
     resize: vertical;
 }
 
-#container>button {
+#eval6Container>button {
     display: block;
     width: 100%;
     padding: 12px;

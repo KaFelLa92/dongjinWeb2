@@ -118,75 +118,77 @@ export default function Eval6(props) {
     }
 
     return (<>
-        <div id="container">
-            <h2> 영화광들의 토론장. 시네아고라입니다. </h2>
-            <h4> 토론할 영화 등록하기 </h4>
-            <div className="space"> 영화명 : </div>
-            <input placeholder="영화명" name="ctitle" value={cineInput.ctitle}
-                onChange={(e) => setCineInput({ ...cineInput, [e.target.name]: e.target.value })}
-                onKeyDown={(e) => e.key == 'Enter' && addCine()} />
-            <div className="space"> 감독 : </div>
-            <input placeholder="감독" name="cdirector" value={cineInput.cdirector}
-                onChange={(e) => setCineInput({ ...cineInput, [e.target.name]: e.target.value })}
-                onKeyDown={(e) => e.key == 'Enter' && addCine()} />
-            <div className="space"> 장르 : </div>
-            <input placeholder="장르" name="cgenre" value={cineInput.cgenre}
-                onChange={(e) => setCineInput({ ...cineInput, [e.target.name]: e.target.value })}
-                onKeyDown={(e) => e.key == 'Enter' && addCine()} />
-            <div className="space"> 비밀번호 : </div>
-            <input placeholder="비밀번호" type="password" name="cpwd" value={cineInput.cpwd}
-                onChange={(e) => setCineInput({ ...cineInput, [e.target.name]: e.target.value })}
-                onKeyDown={(e) => e.key == 'Enter' && addCine()} />
-           <div className="space"> 소개 : </div>
-            <textarea placeholder="영화 소개를 작성해주세요" name="ccontent" value={cineInput.ccontent}
-                onChange={(e) => setCineInput({ ...cineInput, [e.target.name]: e.target.value })}
-                onKeyDown={(e) => e.key == 'Enter' && addCine()}></textarea>
+        <div id="eval6Body">
+            <div id="eval6Container">
+                <h2> 영화광들의 토론장. 시네아고라입니다. </h2>
+                <h4> 토론할 영화 등록하기 </h4>
+                <div className="space"> 영화명 : </div>
+                <input placeholder="영화명" name="ctitle" value={cineInput.ctitle}
+                    onChange={(e) => setCineInput({ ...cineInput, [e.target.name]: e.target.value })}
+                    onKeyDown={(e) => e.key == 'Enter' && addCine()} />
+                <div className="space"> 감독 : </div>
+                <input placeholder="감독" name="cdirector" value={cineInput.cdirector}
+                    onChange={(e) => setCineInput({ ...cineInput, [e.target.name]: e.target.value })}
+                    onKeyDown={(e) => e.key == 'Enter' && addCine()} />
+                <div className="space"> 장르 : </div>
+                <input placeholder="장르" name="cgenre" value={cineInput.cgenre}
+                    onChange={(e) => setCineInput({ ...cineInput, [e.target.name]: e.target.value })}
+                    onKeyDown={(e) => e.key == 'Enter' && addCine()} />
+                <div className="space"> 비밀번호 : </div>
+                <input placeholder="비밀번호" type="password" name="cpwd" value={cineInput.cpwd}
+                    onChange={(e) => setCineInput({ ...cineInput, [e.target.name]: e.target.value })}
+                    onKeyDown={(e) => e.key == 'Enter' && addCine()} />
+                <div className="space"> 소개 : </div>
+                <textarea placeholder="영화 소개를 작성해주세요" name="ccontent" value={cineInput.ccontent}
+                    onChange={(e) => setCineInput({ ...cineInput, [e.target.name]: e.target.value })}
+                    onKeyDown={(e) => e.key == 'Enter' && addCine()}></textarea>
 
-            <button onClick={addCine}> 영화 등록하기 </button>
+                <button onClick={addCine}> 영화 등록하기 </button>
 
-            {cineList.map((c) => {
-                // [*] 토론내용 넘버 매기기 
-                let index = 1;
-                return (<>
-                    <div id="cineContainer">
-                        <h4> {c.ctitle} </h4>
-                        <div className="citiDiv">
-                            <ul key={c.cno} className="cineUl">
-                                <li> 감독 : {c.cdirector} </li>
-                                <li> 장르 : {c.cgenre} </li>
-                                <li> 소개 : {c.ccontent} </li>
-                                <button id="deleteBtn" onClick={() => deleteCine(c.cno)}> 삭제 </button>
-                            </ul>
-                            <h5> 토론 등록하기 </h5>
-                            <ul>
-                                <li> <div className="space"> 토론 내용 : </div> <textarea placeholder="토론 내용을 작성해주세요." name="acontent" value={agoraInput.acontent}
-                                    onChange={(e) => setAgoraInput({ ...agoraInput, [e.target.name]: e.target.value })}
-                                    onKeyDown={(e) => e.key == 'Enter' && addAgora(c.cno)}></textarea> </li>
-                                <li> <div className="space"> 비밀번호 : </div> <input placeholder="비밀번호" name="apwd" value={agoraInput.apwd}
-                                    onChange={(e) => setAgoraInput({ ...agoraInput, [e.target.name]: e.target.value })}
-                                    onKeyDown={(e) => e.key == 'Enter' && addAgora(c.cno)} /> </li>
-                                <button onClick={() => addAgora(c.cno)}>토론 등록하기 </button>
-                            </ul>
-                        </div>
-                    </div>
-                    <h3 className="agoraTitle"> 토론 내용 </h3>
-                    {agoraList.filter((a) => a.cno == c.cno)
-                        .map((a) => (
-                            <div id="agoraContainer">
-                                <div>
-                                    <ul key={a.ano}>
-                                        <li> 번호 : {index++} </li>
-                                        <li> {a.acontent} </li>
-                                        <button id="deleteBtn" onClick={() => deleteAgora(a.ano)}> 삭제 </button>
-                                    </ul>
-                                </div>
+                {cineList.map((c) => {
+                    // [*] 토론내용 넘버 매기기 
+                    let index = 1;
+                    return (<>
+                        <div id="cineContainer">
+                            <h4> {c.ctitle} </h4>
+                            <div className="citiDiv">
+                                <ul key={c.cno} className="cineUl">
+                                    <li> 감독 : {c.cdirector} </li>
+                                    <li> 장르 : {c.cgenre} </li>
+                                    <li> 소개 : {c.ccontent} </li>
+                                    <button id="deleteBtn" onClick={() => deleteCine(c.cno)}> 삭제 </button>
+                                </ul>
+                                <h5> 토론 등록하기 </h5>
+                                <ul>
+                                    <li> <div className="space"> 토론 내용 : </div> <textarea placeholder="토론 내용을 작성해주세요." name="acontent" value={agoraInput.acontent}
+                                        onChange={(e) => setAgoraInput({ ...agoraInput, [e.target.name]: e.target.value })}
+                                        onKeyDown={(e) => e.key == 'Enter' && addAgora(c.cno)}></textarea> </li>
+                                    <li> <div className="space"> 비밀번호 : </div> <input placeholder="비밀번호" name="apwd" value={agoraInput.apwd}
+                                        onChange={(e) => setAgoraInput({ ...agoraInput, [e.target.name]: e.target.value })}
+                                        onKeyDown={(e) => e.key == 'Enter' && addAgora(c.cno)} /> </li>
+                                    <button onClick={() => addAgora(c.cno)}>토론 등록하기 </button>
+                                </ul>
                             </div>
-                        ))}
-                </>)
+                        </div>
+                        <h3 className="agoraTitle"> 토론 내용 </h3>
+                        {agoraList.filter((a) => a.cno == c.cno)
+                            .map((a) => (
+                                <div id="agoraContainer">
+                                    <div>
+                                        <ul key={a.ano}>
+                                            <li> 번호 : {index++} </li>
+                                            <li> {a.acontent} </li>
+                                            <button id="deleteBtn" onClick={() => deleteAgora(a.ano)}> 삭제 </button>
+                                        </ul>
+                                    </div>
+                                </div>
+                            ))}
+                    </>)
 
-            })}
+                })}
 
 
+            </div>
         </div>
     </>)
 

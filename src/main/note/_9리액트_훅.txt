@@ -1,0 +1,25 @@
+**** 리액트에서는 훅이 핵심 ****
+DOM : document object model
+    1. HTML 문서의 구조를 표현하는 객체
+    2. Element : html 마크업들 <div> <input> <p>
+    3. Attribute : html 마크업들의 속성 <div style id class src href...>
+REACT DOM : Virtual document object model
+    1. 실제 DOM을 직접 수정하지 않고 가상 DOM을 생성하여 수정/업데이트 한다.
+    2. Element : 컴포넌트
+    3. Attribute : props 
+
+[ 생명주기 ] Life Cycle
+    1. 컴포넌트가 생성 시점부터 사라지는 시점까지의 주기
+    2. 주기(시점)
+        1) mount 마운트(출생)       : main.jsx가 최초로 컴포넌트 그려주는 함수.render()
+            -> 상위컴포넌트가 return할 때 하위컴포넌트가 같이 return 되므로 하위컴포넌트들도 출생한다.
+            -> 컴포넌트가 출생될때 *1번 실행* 되는 함수 : useEffect( () => { } , [])
+        2) update 업데이트(인생)    : 컴포넌트가 재실행되는 함수
+            -> 컴포넌트가 재실행되므로 리렌더링 된다 = 화면새로고침 = 리렌더링 = 컴포넌트재호출 = 함수재호출
+            -> 컴포넌트가 *업데이트될때 실행*되는 함수 : useEffect( () => { } , [ 의존성배열 ])
+            * 의존성배열이란? 의존(참조)배열(목록)으로 특정한 상태(변수값-useState)가 변경될때만
+        3) unmount 언마운트(사망)   : 컴포넌트가 화면에서 사라질때 * 자동 *
+
+[ 훅 ] : 리액트의 컴포넌트(state)와 생명주기 기능에 갈고리를 걸어 원하는 시점에 정해진 함수를 실행
+[ useState ]
+[ useEffect ]
