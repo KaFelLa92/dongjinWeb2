@@ -5,7 +5,7 @@ export default function ProfilePage(props) {
 
     // [1] store 가져오기
     const dispatch = useDispatch();
-    const { isAuthenticated } = useSelector((state) => state.user)
+    const { isAuthenticated , userInfo } = useSelector((state) => state.user)
     console.log(isAuthenticated);
 
     // [2] 비정상 경로 날려버릴 useNavigate 가져오기
@@ -20,7 +20,7 @@ export default function ProfilePage(props) {
     return (<>
         <h3> 프로필 페이지 </h3>
         <div>
-            <p> 어드민의 마이페이지입니다. </p>
+            {userInfo.name} 님의 마이페이지입니다.
         </div>
     </>)
 }

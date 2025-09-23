@@ -3,8 +3,6 @@ import { login, logout } from "../../userSlice";
 import { useRef } from "react";
 import { useNavigate } from "react-router-dom";
 
-
-
 export default function LoginPage(props) {
 
     // [*] useRef로 form 참조하기 (전역에 쓰기)
@@ -23,12 +21,15 @@ export default function LoginPage(props) {
         const id = formRef.current.elements['id'].value;
         const pwd = formRef.current.elements['pwd'].value;
         if (id == "admin" && pwd == '1234') {
-            alert('관리자 로그인 되었습니다. 홈 화면으로 이동합니다.')
-            dispatch(login())
+            // dispatch(login())
+            const obj = { id: 3, name: "유재석" } // login action에 보낼 데이터
+            alert(obj.name + '님 관리자 로그인 되었습니다. 홈 화면으로 이동합니다.')
+            dispatch(login(obj)) // [1-3] 
             navigate("/")
         } else if (id == "user" && pwd == "0000") {
-            alert('사용자1 로그인 되었습니다. 홈 화면으로 이동합니다.')
-            dispatch(login())
+            const obj = { id: 5, name: "강호동" }
+            dispatch(login(obj))
+            alert(obj.name + '님 로그인 되었습니다. 홈 화면으로 이동합니다.')
             navigate("/")
         }
         else {
