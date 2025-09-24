@@ -7,9 +7,18 @@
         3) 컴포넌트 간 props 전달이 복잡해질 때
         등등
     4. 핵심 용어
+        export default 내보내기대상     : JS파일내 하나의 기본적인 내보내기 값 , *name 없다*
+            import 변수명 from '파일경로'
+            예] import userReducer from './userSlice.jsx'
+        export const 변수명 = 값        : JS파일내 여러개 내보내기 값(함수/객체) , *name 있다*
+            import { 가져올이름 } from '파일경로'
+            예] import { login, logout } from './userSlice.jsx'
+
         1) Store(저장소) : 상태들을 관리하는 중앙 , 즉] 모든 상태(전역변수)들을 저장한다.
-            configureStore()
-        2) Slice : 상태(전역변수)와 리듀서를 정의하는 곳 , 
+            - 어플리케이션 하나 당 하나씩
+            - configureStore()
+        2) Slice : 상태(전역변수=값)와 리듀서(함수=상태[값]변경)를 정의하는 곳 , 
+            - 액션 통해 상태변경을 하면 *리렌더링*된다.
             createSlice( , , reducers : 함수명 : (state) => { } )
         3) Reducer(리듀서) : 상태를 변경하는 함수
         4) action(액션) : 상태를 변경하기 위한 store에 보내는 함수
@@ -19,3 +28,17 @@
             dispatch( login() )
         2) action이 store에 전달된다. (dispatch)
         3) store에 등록된 Reducer를 찾아서 state 업데이트한다.
+    6. 상위 컴포넌트에서 <Provider store={ 내가만든스토어 } > 통해 하위 컴포넌트에게 공급한다.
+        1) 액션 호출 : dispatch( 상태변경함수( 인자값 ) );
+            - slice 내 리듀서 함수 정의에서 action으로 인자값을 전달받을 수 있다.
+            - 함수명 : (state , action) => { action.payload }
+            - login : (state , action) => { state.userInfo = action.payload }
+        2) 현재 상태 반환 : useSelector( (state) => state.등록된상태명 )
+
+[ 리덕스의 영구저장법 ]
+    개요 : 리덕스는 전역상태이기에 영구 저장이 안 됨.
+    1. 클라이언트 사이드 렌더링 : + 퍼시스턴스
+    2. 서버 사이드 렌더링 : + 서버
+    3. next.js( react 단점 보완 = 서버사이드렌더링 , 검색엔진SEO )
+
+
