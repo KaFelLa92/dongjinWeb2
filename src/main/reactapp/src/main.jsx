@@ -59,7 +59,7 @@ import Task6 from './example/day04/Task6';
 // day05
 import Component13 from './example/day05/Component13';
 // [1] 내가 만든 스토어 불러오기
-import store from './example/day05/실습7/store/store';
+import store, { persistor } from './example/day05/실습7/store/store';
 // [2] Store 사용할 곳에 store 공급해주기 , <Provider store={ 내가만든스토어 } >
 import { Provider } from 'react-redux';
 
@@ -68,10 +68,18 @@ import { Provider } from 'react-redux';
 // create.render( <div> <Component2 /> </div> );
 
 // 실습7
-import App from './example/day05/실습7/App';
+// import App from './example/day05/실습7/App';
+// import { PersistGate } from 'redux-persist/integration/react';
+
+// 실습8
+import App from './example/day06/App';
+import { PersistGate } from 'redux-persist/integration/react';
 
 create.render(
   <Provider store={store}>
-    <App />
+    {/* [2] 내가 만든 persist 공급 , loading : { 초기 로딩값 } psersist = { 내가만든persistStore } */}
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
   </Provider>
 );

@@ -56,9 +56,6 @@ export default function LoginPage(props) {
             </form>
             :
             <div>
-                {formRef.current.elements['id'].value == "admin" ? <p> 반갑습니다 관리자님 </p>
-                    : <p> 반갑습니다 사용자1님 </p>
-                }
                 <button type="button" onClick={logoutHandle} > 로그아웃 버튼 </button>
             </div>
         }
