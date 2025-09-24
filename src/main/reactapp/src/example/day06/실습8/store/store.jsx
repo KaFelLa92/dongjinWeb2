@@ -1,5 +1,5 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { persistReducer, persistStore } from "redux-persist/es/persistReducer";
+import { persistReducer, persistStore } from "redux-persist";
 import cartSlice from './cartSlice.jsx';
 
 // [2] redux-persist 설정

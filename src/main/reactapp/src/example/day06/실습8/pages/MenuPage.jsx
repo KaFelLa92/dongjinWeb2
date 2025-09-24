@@ -1,13 +1,11 @@
-import { useRef, useState } from "react";
+import { useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
+import { add } from "../store/cartSlice";
 
 export default function MenuPage(props) {
 
     // [*] useRef로 form 참조해서 메뉴 담을 준비
     const formRef = useRef(null);
-
-    // [*] 셀렉트박스를 사용할 useState 세팅
-    const [selected, setSelected] = useState("");
 
     // [1] store 가져오기
     const dispatch = useDispatch();
@@ -21,36 +19,21 @@ export default function MenuPage(props) {
         { id: 3, name: "카푸치노", price: 4500 },
     ];
 
-    // [2] 셀렉트박스 핸들러 함수
-    const selectHandle = async (e) => {
-        setSelected(e.target.value)
+    // [2] 장바구니 담기 함수
+    const addCart = async (clickItem) => {
+        dispatch(add(clickItem))
+        console.log(clickItem.name + "이(가) 장바구니에 추가되었습니다") 
     }
 
-    // [3] 장바구니 담기 함수
-    const addCart = async () => {
-        if(!selected) {
-            alert('메뉴를 선택하세요')
-            return
-        }
-        const id = formRef.current.elements['id'].value;
-        dispatch(add(id))
-
-    }
-
-
-
+    // [3] 리턴(키오스크 화면)
     return (<>
         <h3> 메뉴 페이지 </h3>
-        <form ref={formRef}>
-            <select value={selected} onChange={selectHandle}>
-                <option value=""> --- 메뉴 선택 --- </option>
-                {menu.map((m) => {
-                    return (<>
-                        <option value={m.id}> {m.name} ({m.price}원) </option>
-                    </>)
-                })}
-            </select>
-            <button type="button" onClick={addCart}> 담기 </button>
-        </form>
+        {menu.map((m) => {
+            return (<>
+                <div key={m.id}>
+                    <button type="button" onClick={() => { addCart(m) }} > {m.name} ({m.price}원) 담기 </button>
+                </div>
+            </>)
+        })}
     </>)
 }
