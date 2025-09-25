@@ -5,7 +5,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Map;
-import java.util.Objects;
 
 @Service
 @RequiredArgsConstructor
@@ -45,20 +44,20 @@ public class BookService {
         int rentId = turn.get("rentId");
         int bookId = turn.get("bookId");
 
-        // 2) 대출 기록 변경
-        int turnbackRecord = bookMapper.turnbackRecord(rentId);
-
-        // *) 강제 예외 발생
-        if (turnbackRecord == 0) {
-            throw new RuntimeException("반납 기록 등록 실패 : 대출 기록이 없거나 이미 반납처리됨");
-        }
-
         // 1) 반납 요청 (반납 기록이 없을 때, 트랜잭션이 발동하여 책 재고가 계속 늘어나지 않는가?)
         int turnbackBook = bookMapper.turnbackBook(bookId);
 
         // *) 강제 예외 발생
         if (turnbackBook == 0) {
             throw new RuntimeException("반납 요청 실패 : 존재하지 않는 책");
+        }
+
+        // 2) 대출 기록 변경
+        int turnbackRecord = bookMapper.turnbackRecord(rentId);
+
+        // *) 강제 예외 발생
+        if (turnbackRecord == 0) {
+            throw new RuntimeException("반납 기록 등록 실패 : 대출 기록이 없거나 이미 반납처리됨");
         }
 
         return 1;
