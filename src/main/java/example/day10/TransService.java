@@ -34,13 +34,26 @@ public class TransService {
     // 지정한 함수내 예외(RuntimeException : 실행예외)가 발생하면 함수내 SQL 모두 취소
     // 2.
     public boolean transfer(Map<String , Object> transInfo){
+        int money = Integer.parseInt(String.valueOf(transInfo.get("money")));   // 정수를 문자열로 타입변환
         // 1) 신동엽 10만원 차감
         String fromname = transInfo.get("fromname")+""; // 문자열로 타입변환 1
-        int money = Integer.parseInt(String.valueOf(transInfo.get("money")));   // 정수를 문자열로 타입변환
-        transMapper.withdraw( fromname , money);
+        boolean result1 = transMapper.withdraw( fromname , money);
+
+        // *) 강제 예외 발생시켜서 rollback 내기
+        if ( result1 == false ) { // 예외 발생했을 때
+            throw new RuntimeException("차감 실패"); // throw new 예외클래스명 // 강제 예외 발생
+        }
+        // 결과 : 로직이 예외처리되었을 때 신동엽 10만원 깎인 것이 반영되지 않고 rollback됨.
+
         // 2) 서장훈 10만원 증가
         String toname = String.valueOf(transInfo.get("toname")); // 문자열로 타입변환 2
-        transMapper.deposit( toname , money);
+        boolean result2 = transMapper.deposit( toname , money);
+
+        // *) 강제 예외 발생시켜서 rollback 내기
+        if (result2 == false) {
+            throw new RuntimeException("증감 실패"); // throw new 예외클래스명 // 강제 예외 발생
+        }
+        
         return true;
     }
 

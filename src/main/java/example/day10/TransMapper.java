@@ -21,7 +21,7 @@ public interface TransMapper {
     boolean deposit(String name, int money);
 
     // (4) update 입금 , 빼기
-    @Update("update trans set money = money - #{money} where name = #{name}")
+    @Update("update trans set money = money - #{money} where name = #{name} and money >= #{money}") // 보내려는 금액보다 예금이 더 많거나 같아야 빼기 가능
     boolean withdraw(String name , int money);
 
 }
