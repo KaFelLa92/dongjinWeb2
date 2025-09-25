@@ -2,6 +2,7 @@ DROP DATABASE IF EXISTS springweb2;
 CREATE DATABASE springweb2;
 USE springweb2;
 
+
 -- --------------------------------------- 실습1 ----------------------------------------
 CREATE TABLE products (
     product_id INT PRIMARY KEY AUTO_INCREMENT, -- 상품 ID (자동 증가)
@@ -33,20 +34,13 @@ INSERT INTO student (name, kor, math) VALUES ('이영희', 92, 95);
 INSERT INTO student (name, kor, math) VALUES ('박지민', 70, 65);
 INSERT INTO student (name, kor, math) VALUES ('최유리', 88, 82);
 
-select * from student;
-
-drop database if exists exam12;
-create database exam12;
-use exam12;
-
+-- --------------------------------------- day07 boardService13 ----------------------------------------
 create table board(
-        bno int auto_increment ,
+    bno int auto_increment ,
     bcontent longtext not null ,
     bwriter varchar(30) not null ,
     constraint primary key(bno)
 );
-
--- --------------------------------------- day07 boardService12 ----------------------------------------
 
 # 샘플
 INSERT INTO board (bcontent, bwriter) VALUES ('안녕하세요', '유재석');
@@ -90,3 +84,10 @@ INSERT INTO board (bcontent, bwriter) VALUES ('오늘도 화이팅!', '리사');
 INSERT INTO board (bcontent, bwriter) VALUES ('운전 조심하세요~', '태연');
 
 select * from board;
+
+-- --------------------------------------- day09 boardService13 ----------------------------------------
+CREATE TABLE trans(
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(255) NOT NULL,
+    money INT UNSIGNED DEFAULT 0
+);

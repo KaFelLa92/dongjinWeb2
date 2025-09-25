@@ -1,3 +1,8 @@
+/*
+    퍼시스턴스 설치하기
+    npm i redux-persist
+*/
+
 import { configureStore } from "@reduxjs/toolkit";
 import { persistReducer, persistStore } from "redux-persist";
 import cartSlice from './cartSlice.jsx';
@@ -19,5 +24,6 @@ const store = configureStore({
 
 // [5] export
 export default store;
+
 // [6] 등록된 퍼시스턴스 스토어 내보내기
 export const persistor = persistStore(store)

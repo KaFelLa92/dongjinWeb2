@@ -18,6 +18,7 @@ export default function CartPage(props) {
         dispatch(remove())
     }
 
+    // [4] 리턴
     return (<>
         <h3> 장바구니 페이지 </h3>
         <div>
@@ -26,7 +27,7 @@ export default function CartPage(props) {
             ) : (
                 <>
                     {cartItems.map((item) => (
-                        <div>
+                        <div key={item.id}>
                             {item.name} | 수량 : {item.stock}개 | 가격 : {(item.stock * item.price).toLocaleString()}원
                         </div>
                     ))}

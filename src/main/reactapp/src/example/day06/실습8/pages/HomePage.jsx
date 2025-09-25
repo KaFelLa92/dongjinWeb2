@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom"
 
 export default function HomePage(props) {
-    // 키오스크 대기화면에서 메뉴로 가기 위한 navigate
+    // [*] 키오스크 대기화면에서 메뉴로 가기 위한 navigate
     const navigate = useNavigate();
 
     const toMenu = () => {

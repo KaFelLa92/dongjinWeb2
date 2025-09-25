@@ -1,0 +1,52 @@
+[ 객체지향 프로그래밍 : OOP ]
+    객체들이 서로 상호작용(2개 이상의 객체가 작용. ex : MVC)하여 프로그래밍 방식
+
+[ 관점지향 프로그래밍 : AOP ]
+    핵심 로직과 공통적인 관심사를 분리하여 관리하는 프로그래밍 방식
+    1. 목적 : 핵심 로직(서비스)은 그대로 유지하고, 공통 기능은 한 곳에서 관리 (유지보수/확장성)
+    2. 공통기능
+        1) 로그 처리(오류, 예외처리, 보안 관련 추적)
+        2) 트랜잭션 (SQL 시작/종료)
+        3) 성능(시간)평가
+        4) 보안(인증, 권한)
+    3. 사용법
+        1) 설치 : implementation 'org.springframework.boot:spring-boot-starter-web'
+        2) AOP 커스텀 클래스
+            @Aspect         : AOP 클래스임을 명시
+            @Component      : 스프링 빈 등록
+            class AopClass{ }
+        3) AOP 커스텀 클래스내 공통함수 정의
+            @Before         : 메소드 실행 전              | 권한 검사 용도
+            @After          : 메소드 실행 후              | 로그 용도 , DB 연동 해제
+            @AfterReturning : 메소드 정상 종료 후 반환값    | 반환값 기록
+            @Around         : 메소드 실행 전후 모두        | 성능평가
+        4) execution 규칙
+            (1) 리턴 타입 지정
+                execution( * ) : 모든 리턴 타입의 메소드들
+                execution( boolean ) : 모든 리턴 타입의 메소드들
+            (2) 클래스/메소드 경로 지정
+                execution( * AopService ) : 같은 패키지
+                execution( * example.day09.AopService ) : 다른 패키지 ( * Java 이하 경로)
+            (3) 메소드 지정
+                execution( * example.day09.AopService.* ) : 해당 클래스내 메소드에 적용
+                execution( * example.day09.AopService.enter1(..) ) : .enter1 : 해당 클래스내 enter1에만 적용
+            (4) 매개변수 지정 * 바인딩
+                execution( * example.day09.AopService.enter1(..) ) : 모든 매개변수를 갖는 메소드만 적용
+                execution( * example.day09.AopService.enter1( int , boolean ) && args( age , check) ) : 지정한 매개변수를 갖는 메소드만 적용
+            (5) 리턴 지정 , @AfterReturning( value="execution( boolean * )" , returning = "int" )
+        5) @Around
+            (1) @Around
+                Object method( ProceedingJoinPoint joinPoint) {}
+            (2) ProceedingJoinPoint
+                .getSignature() : 해당 공통기능 사용하는 핵심로직함수 확인
+                .getArgs()      : 핵심로직함수가 사용하는 매개변수의 인자값들(배열)* 확인
+                .proceed();     : 핵심로직함수 직접 실행 후 반환값 받을 수 있다.
+                    - Object result = joinPoint.proceed();
+    4. AOP 사용하는 주요 어노테이션
+        1) @Transactional       : JDBC에서 SQL 시작과 끝 하나의 로직 만드는 메소드
+        2) @Log4j2              :
+        3) 스프링 시큐리티         :
+
+
+
+
