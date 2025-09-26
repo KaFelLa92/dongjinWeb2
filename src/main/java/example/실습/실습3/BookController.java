@@ -19,6 +19,7 @@ public class BookController {
     // URL : http://localhost:8080/book/log
     @GetMapping("/log")
     public void log() {
+        // 어플리케이션.프로퍼티스에서 logging.level.root=debug 설정해야함
         System.out.println("개발 단계에서는 print 많이 써야 오류 포인트를 잡을 수 있다");
         // log.XXXX : 출력함수처럼 메시지 출력하는 함수이면서, 부가기능(파일처리, 제약조건) 있음
         log.debug( "테스트 과정에서 사용" ); // 테스트(개발) 과정에서 메시지 작성
