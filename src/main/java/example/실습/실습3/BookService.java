@@ -24,7 +24,7 @@ public class BookService {
 
         // *) 강제 예외 발생
         if (checkoutRecord == 0) {
-            throw new RuntimeException("대출 기록 등록 실패 : 재고가 없거나 존재하지 않습니다");
+            throw new RuntimeException("대출 기록 등록 실패 : 기록이 존재하지 않습니다");
         }
 
         // 1) 대출 요청
@@ -32,7 +32,7 @@ public class BookService {
 
         // *) 강제 예외 발생
         if (checkoutBook == 0) {
-            throw new RuntimeException("대출 요청 실패");
+            throw new RuntimeException("대출 요청 실패 : 재고가 없습니다");
         }
 
         return 1;
@@ -49,7 +49,7 @@ public class BookService {
 
         // *) 강제 예외 발생
         if (turnbackBook == 0) {
-            throw new RuntimeException("반납 요청 실패 : 존재하지 않는 책");
+            throw new RuntimeException("반납 요청 실패 : 존재하지 않는 책입니다");
         }
 
         // 2) 대출 기록 변경

@@ -59,6 +59,6 @@ public class AppStart {
     SELECT * FROM books;
     SELECT * FROM rentals;
 
-[ 제출방법 ] 코드가 작성된 파일이 위치한 GitHub 상세 주소를 제출하시오.
+    [ 제출방법 ] 코드가 작성된 파일이 위치한 GitHub 상세 주소를 제출하시오.
 
 */
