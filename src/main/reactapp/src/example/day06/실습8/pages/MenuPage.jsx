@@ -2,6 +2,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { add } from "../store/cartSlice";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import * as React from 'react';
+import Button from '@mui/joy/Button';
+import ButtonGroup from '@mui/joy/ButtonGroup';
+import IconButton from '@mui/joy/IconButton';
+import Settings from '@mui/icons-material/Settings';
 
 export default function MenuPage(props) {
 
@@ -39,7 +44,9 @@ export default function MenuPage(props) {
         {menu.map((m) => {
             return (<>
                 <div key={m.id}>
-                    <button type="button" onClick={() => { addCart(m) }} > {m.name} ({m.price}원) 담기 </button>
+                    <ButtonGroup>
+                        <Button type="button" onClick={() => { addCart(m) }} > {m.name} ({m.price}원) 담기 </Button>
+                    </ButtonGroup>
                 </div>
             </>)
         })}

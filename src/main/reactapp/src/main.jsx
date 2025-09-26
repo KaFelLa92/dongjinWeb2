@@ -61,7 +61,7 @@ import Component13 from './example/day05/Component13';
 // [1] 내가 만든 스토어 불러오기
 // import store, { persistor } from './example/day05/실습7/store/store';
 // [2] Store 사용할 곳에 store 공급해주기 , <Provider store={ 내가만든스토어 } >
-import { Provider } from 'react-redux';
+// import { Provider } from 'react-redux';
 
 // [2] 렌더링하기 * 렌더는 한 번만 가능하다. *
 // create.render( <div> <Component1 /> </div> );
@@ -69,12 +69,12 @@ import { Provider } from 'react-redux';
 
 // 실습7
 // import App from './example/day05/실습7/App';
-// import { PersistGate } from 'redux-persist/integration/react';
 
 // 실습8
 import App from './example/day06/App';
 import { PersistGate } from 'redux-persist/integration/react';
 import store, { persistor } from './example/day06/실습8/store/store';
+import { Provider } from 'react-redux';
 
 create.render(
   <Provider store={store}>
@@ -84,3 +84,13 @@ create.render(
     </PersistGate>
   </Provider>
 );
+
+// day07
+// import Component14 from './example/day07/Component14';
+// import SideBar from './example/day07/SideBar';
+// import ExampleGmailList from './example/day07/Navigation';
+// import BasicModal from './example/day07/Modal';
+
+// create.render(
+//   <BasicModal />
+// );
