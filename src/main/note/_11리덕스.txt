@@ -41,4 +41,28 @@
     2. 서버 사이드 렌더링 : + 서버
     3. next.js( react 단점 보완 = 서버사이드렌더링 , 검색엔진SEO )
 
+[ 퍼시스트 ] persist
+    1. 정의 : 리덕스의 상태는 기본적으로 새로고침하면 사라진다.
+    2. 목적 : localStorage,sessionStorage 활용한 저장
+    3. 설치 : npm i redux-persist
+    4. 핵심용어
+        1) persistConfig : persist 설정 객체
+            const 퍼시스트옵션 = { key : '식별이름' , storage }
+            const 퍼시스트슬라이스 = persistReducer( 퍼시스트옵션 , 슬라이스 );
+        2) persistGate : 저장소에서 상태를 불러올때 *지연*해주는 컴포넌트
+            <PersistGate loading = { 최초로딩초기값 } persistor = { 퍼시스트스토어 }>
+    5. 주요 import
+        localStorage : import storage from 'redux-persist/lib/storage'
+        sessionStorage : import storageSession from 'redux-persist/lib/session'
+
+
+
+
+
+
+
+
+
+
+
 
