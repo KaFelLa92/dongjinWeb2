@@ -71,19 +71,19 @@ import Component13 from './example/day05/Component13';
 // import App from './example/day05/실습7/App';
 
 // 실습8
-import App from './example/day06/App';
-import { PersistGate } from 'redux-persist/integration/react';
-import store, { persistor } from './example/day06/실습8/store/store';
-import { Provider } from 'react-redux';
+// import App from './example/day06/App';
+// import { PersistGate } from 'redux-persist/integration/react';
+// import store, { persistor } from './example/day06/실습8/store/store';
+// import { Provider } from 'react-redux';
 
-create.render(
-  <Provider store={store}>
-    {/* [2] 내가 만든 persist 공급 , loading : { 초기 로딩값 } psersist = { 내가만든persistStore } */}
-    <PersistGate loading={null} persistor={persistor}>
-      <App />
-    </PersistGate>
-  </Provider>
-);
+// create.render(
+//   <Provider store={store}>
+//     {/* [2] 내가 만든 persist 공급 , loading : { 초기 로딩값 } psersist = { 내가만든persistStore } */}
+//     <PersistGate loading={null} persistor={persistor}>
+//       <App />
+//     </PersistGate>
+//   </Provider>
+// );
 
 // day07
 // import Component14 from './example/day07/Component14';
@@ -94,3 +94,7 @@ create.render(
 // create.render(
 //   <BasicModal />
 // );
+
+// day08
+import Component15 from './example/day08/Component15';
+create.render(<Component15 />);

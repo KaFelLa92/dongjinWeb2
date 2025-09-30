@@ -16,4 +16,23 @@
         2) 특정 패키지에서만 설정 , 패키지명은 java 폴더
             logging.level.패키지명.패키지명 = 레벨
 
+    6. 로그 파일 저장 위치 설정
+        - logging.file.name = 폴더명/파일명.log
+        - logging.logback.rollingpolicy.max-file-size = 10MB : 로그 파일 용량
+        - logging.logback.rollingpolicy.max-history = 10
+    7. 스프링프레임워크 내부 로그 줄이기
+        spring.main.log-startup-info = false
+        logging.level.org.springframework.boot.web=warn
+        logging.level.org.springframework.boot.web.embedded.tomcat=warn
+        logging.level.org.apache.catalina=warn
+        logging.level.org.apache.coyote=warn
+        logging.level.org.springframework.web=warn
+    8. 로그 형식
+        %msg : 로그메시지    , %n : 줄바꿈          , %d{ y M d H m s } : 날짜/시간
+        %level : 레벨       , logger : 클래스/경로
+        - logging.pattern.file =
+        - logging.pattern.console =
+
+
+
 * 팀플할 때는 로그폴더 깃이그노어하고, 마지막 단계에서 테스트 할 때만 켜두기
