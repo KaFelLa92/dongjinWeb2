@@ -1,5 +1,4 @@
 import { BrowserRouter, Route, Routes } from "react-router-dom";
-import Header from "./실습8/components/Header";
 import HomePage from "./실습8/pages/HomePage";
 import MenuPage from "./실습8/pages/MenuPage";
 import CartPage from "./실습8/pages/CartPage";
