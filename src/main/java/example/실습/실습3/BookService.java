@@ -65,29 +65,15 @@ public class BookService {
         return 1;
     } // method end
 
-    // [3] 책 단일 & 일괄 등록 메소드
-    public List<Integer> uploadBook(List<Map<String, Object>> bookList){
-        Map<String, Object> book = new HashMap<>();
-        // 반환값 제너레이트키
-        int bookId = (Integer) book.get("bookId");
-        String title = (String) book.get("title");
-        int stock = (Integer) book.get("stock");
-        // bookId가 한 개일 경우
-        if (bookList.size() == 1) {
-            return bookId;
-        }
-        // bookId가 여러개일 경우
-        if (bookList.size() >= 2){
-            return bookList.get(Map<>)
-        }
-
-
-    }
+    // [3] 책 단일 등록 메소드
+    public
 
     // [4] 대출 기록 검색 메소드
     public List<Map <String, String> viewRecord(Map<String, Object> record){
 
     }
+
+    // [5] 책 일괄 등록 메소드
 
 
 
