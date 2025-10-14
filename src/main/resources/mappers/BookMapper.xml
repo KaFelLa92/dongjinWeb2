@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org/DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="example.실습.실습3.BookMapper">
+
+    <!-- [5, 7] 책 단일, 일괄 등록 기능 (동적쿼리, 트랜잭션 적용) -->
+    <insert id="uploadBook"
+            parameterType="list"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        insert into books(title, stock) values
+        <foreach collection="list" item="b" separator=",">
+            ( #{b.title} , #{b.stock} )
+        </foreach>
+
+    </insert>
+
+    <!-- [6] 대출기록 검색 -->
+    <select id="viewRecord">
+        select * from rentals
+        <where>
+            <if test="member != null">
+                and member like concat ( '%' , #{member} , '%' )
+            </if>
+            <if test="book_id != 0">
+                and book_id = #{bookId}
+            </if>
+        </where>
+    </select>
+
+
+
+
+</mapper>

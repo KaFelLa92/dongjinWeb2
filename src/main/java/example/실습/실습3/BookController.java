@@ -54,6 +54,10 @@ public class BookController {
             return ResponseEntity.status(405).body(0);
         }
     }
+    
+    // [3] 책 등록 메소드
+    
+    // [4] 대출 기록 검색 메소드
 
 
 } // class end

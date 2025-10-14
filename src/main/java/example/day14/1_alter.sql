@@ -50,9 +50,21 @@ show columns from employee; -- 특정한 테이블의 필드 정보 확인(속�
 # alter table 테이블명 add constraint 제약조건(아무거나/중복불가) primary key (PK필드명);
 # alter table 테이블명 add constraint 제약조건명 foreign key(fk필드명) refereneces 참조테이블명(PK필드명)
 alter table employee add constraint employee_id primary key (id);
-alter table employee add constraint employee_name Unique (name);
+alter table employee add constraint employee_name unique (name);
 
 # [8] 제약조건 삭제
-alter table employee drop constraint employee_id;
+ALTER TABLE employee DROP PRIMARY KEY;
+alter table employee drop constraint employee_name;
+alter table employee drop index employee_name; -- 위에 거랑 같음
+
+# [9] 수정 없이 삭제후 다시 제약조건 추가
+# [10] 제약조건 확인
+select * from information_schema.table_constraints;
+select * from information_schema.table_constraints where table_schema = "springweb2";
+select * from information_schema.table_constraints 
+	where table_schema = "springweb2" and table_name = "employee";
 
 select * from employee; 	-- 특정한 테이블의 레코드 정보 확인(속성값 확인)
+
+SHOW CREATE TABLE employee;
+SHOW INDEX FROM employee;
