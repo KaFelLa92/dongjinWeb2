@@ -82,11 +82,12 @@ public class BookService {
         }
 
 
-        
-
     }
 
     // [4] 대출 기록 검색 메소드
+    public List<Map <String, String> viewRecord(Map<String, Object> record){
+
+    }
 
 
 

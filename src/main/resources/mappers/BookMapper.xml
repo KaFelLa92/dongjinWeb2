@@ -18,13 +18,16 @@
 
     <!-- [6] 대출기록 검색 -->
     <select id="viewRecord">
-        select * from rentals
+        select r.* , b.title from rentals r
+        inner join books b on r.book_id = b.book_id
         <where>
-            <if test="member != null">
-                and member like concat ( '%' , #{member} , '%' )
+            <!-- 대출한 사람이름 있으면 조회 -->
+            <if test="member != null and member != ''">
+                and r.member like concat ( '%' , #{member} , '%' )
             </if>
-            <if test="book_id != 0">
-                and book_id = #{bookId}
+            <!-- 책 이름 있으면 조회 -->
+            <if test="bookId != 0 and bookId != null">
+                 and r.book_id = #{bookId}
             </if>
         </where>
     </select>
