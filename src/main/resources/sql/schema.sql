@@ -59,3 +59,28 @@ CREATE TABLE rentals (
     PRIMARY KEY (id),
     FOREIGN KEY (book_id) REFERENCES books(id)
 );
+
+-- 실습5
+# 책books 테이블에 price 가격(int) 필드 추가
+alter table books add column price int;
+# 책books 테이블에 title 책이름 필드 (longtext) 필드 수정
+alter table books modify title longtext;
+
+select * from books;
+
+-- 인덱스 예제
+
+CREATE TABLE IF NOT EXISTS employee (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(100),
+    dept_id INT,
+    salary INT,
+    hire_date DATE,
+    email VARCHAR(100)
+);
+
+
+CREATE TABLE IF NOT EXISTS department (
+    dept_id INT PRIMARY KEY,
+    dept_name VARCHAR(50)
+);

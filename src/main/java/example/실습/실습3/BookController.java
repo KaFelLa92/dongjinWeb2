@@ -5,6 +5,7 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Map;
 
 @RestController
@@ -55,9 +56,27 @@ public class BookController {
         }
     }
     
-    // [3] 책 등록 메소드
+    // [3] 단일 책 등록 메소드
+    // URL : http://localhost:8080/book/upload
+    // BODY : { "title" : "코스모스" , "stock" : 5 }
+    @PostMapping("/upload")
+    public ResponseEntity<Integer> uploadBook(@RequestBody Map<String, Object> book){
+        int result = bookService.uploadBook(book);
+        return ResponseEntity.ok(result);
+    }
     
     // [4] 대출 기록 검색 메소드
+    @GetMapping("/record")
+    public ResponseEntity<?> viewRecord(@RequestParam(required = false) String member, @RequestParam(required = false, defaultValue = "0") int bookId) {
+        List<Map<String, String>> records = bookService.viewRecord(member, bookId);
+        return ResponseEntity.ok(records);
+    }
 
+    // [5] 일괄 책 등록 메소드
+    @PostMapping("/uploadAll")
+    public ResponseEntity<Integer> uploadAllBook(@RequestBody List<Map<String, Object>> bookList){
+        int count = bookService.uploadAllBook(bookList);
+        return ResponseEntity.ok(count);
+    }
 
 } // class end

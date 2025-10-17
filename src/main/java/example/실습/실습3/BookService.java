@@ -65,16 +65,36 @@ public class BookService {
         return 1;
     } // method end
 
-    // [3] 책 단일 등록 메소드
-    public
-
-    // [4] 대출 기록 검색 메소드
-    public List<Map <String, String> viewRecord(Map<String, Object> record){
-
+    // [3] 책 단일 등록 메소드 : 제너레이트키 반환
+    public int uploadBook(Map<String, Object> book){
+        return bookMapper.uploadBook(book);
     }
 
-    // [5] 책 일괄 등록 메소드
+    // [4] 대출 기록 검색 메소드
+    public List<Map<String, String>> viewRecord(String member , int bookId){
+        return bookMapper.viewRecord(member, bookId);
+    }
 
+    // [5] 책 일괄 등록 메소드 : 트랜잭션
+    public int uploadAllBook(List<Map<String, Object>> bookList){
+        int count = 0;
+        // 등록 반복
+        for (Map<String, Object> book : bookList){
+            int result = bookMapper.uploadBook(book);
+            if (result == 0){
+                throw new RuntimeException("도서 등록 실패 : " + book.get("title"));
+            }
+            count += result;
+        }
+        // 등록한 숫자 반환
+        return count;
+    }
+
+    // 실습 5
+
+    // 실습 6
+
+    //
 
 
 } // class end

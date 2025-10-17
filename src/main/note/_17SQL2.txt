@@ -1,0 +1,92 @@
+[ ALTER ]
+    - 기존 테이블의 구조 변경
+    - 사용법
+        추가 : ALTER TABLE 테이블명 ADD COLUMN 새로운필드명 타입;
+        타입수정 : ALTER TABLE 테이블명 MODIFY COLUMN 수정할필드명 새로운타입;
+        필드명수정 : ALTER TABLE 테이블명 CHANGE COLUMN 기존필드명 새로운필드명 타입;
+        삭제 : ALTER TABLE 테이블명 DROP COLUMN 삭제할필드명;
+        제약조건추가
+            ALTER TABLE 테이블명 ADD CONSTRAINT 제약조건명 PRIMARY KEY(PK필드명);
+            ALTER TABLE 테이블명 ADD CONSTRAINT 제약조건명 FOREIGN KEY(FK필드명) REFERENCES 참조테이블명(PK필드명);
+            ALTER TABLE 테이블명 ADD CONSTRAINT 제약조건명 제약조건(필드명);
+        제약조건삭제
+            ALTER TABLE 테이블명 DROP PRIMARY KEY
+            ALTER TABLE 테이블명 DROP FOREIGN KEY 삭제할제약조건명;
+            ALTER TABLE 테이블명 DROP CONSTRAINT 삭제할제약조건명;
+        필드 확인 : SHOW COLUMNS FROM 테이블명;
+        제약조건 확인 : SELECT * FROM INFORMATION_SCHEMA.TABLE_CONSTRAINTS;
+
+[ SUBQUERY ] : 포트폴리오에 꼭 넣기
+    - SELECT 안의 SELECT
+    - 사용법 : SELECT (SELECT) FROM (SELECT) WHERE (SELECT)
+
+[ Transaction ] : 포트폴리오에 꼭 넣기
+    - 정의 : 여러 SQL 작업들을 하나의 단위(묶음)로 처리하여 모두 성공이면 COMMIT, 하나라도 실패시 ROLLBACK하는 기능
+    - 목적 : 데이터의 무결성 유지와 안정성을 보장하는 개념
+    - 명령어
+        1) set autocommit = 0;  : 자동 커밋 해제( 워크벤치에서 commit 수동모드 , =1 자동모드)
+        2) start transaction;   : 트랜잭션 시작
+        3) commit;              : 성공
+        4) rollback;            : 취소
+        5) savepoint 포인트명;   : 임의의 포인트명으로 지점(위치) 저장
+        6) rollback to 포인트명; : 특정한 포인트명으로 이동
+        * 자바 Spring : @Transactional 하고 RuntimeException으로 롤백한다.
+
+[ View ]
+    - 정의 : 실제 데이터를 저장하지 않고, select 쿼리 결과를 이름으로 저장하는 가상의 테이블
+    - 목적 : (복잡한) SQL문의 재사용과 보안(민감한 정보 숨김) , 일부 뷰에서는 수정 불가능(읽기모드)
+    - 명령어
+        1) create [ or replace ] view 뷰명 as 쿼리문;     : 뷰 생성
+        2) alter view 뷰명 as 새로운쿼리문;                : 뷰 수정
+        3) drop view if exists 뷰명;                     : 뷰 삭제
+        4) show full tables where TABLE-TYPE = 'view'   : 뷰 목록 확인
+    - * (사용) 권한 분리와 쿼리의 재사용으로 활용된다. *
+
+[ DCL ]
+    - 정의 : 데이터베이스의 사용자 계정 생성, 권한 부여, 권한 회수 등 관리하는 명령어
+    - 주요 명령어
+        1) create user '계정명'@'허용IP' identified by '비밀번호'           : 새로운 사용자 계정 생성
+            * 허용도메인 : localhost(로컬환경), %(모든IP허용), 192.168.0.1(특정한IP), 도메인(naver.com)
+        2) grant 권한명령어 on 데이터베이스명.테이블명/뷰 to '계정명'@'허용IP'   : 특정 사용자에게 명령어 권한 부여
+            * all privileges : 모든 권한 , select/delete/update/insert/create 권한 등을 줄 수 있음
+        3) revoke 권한명령어 on 데이터베이스명.테이블명/뷰 to '계정명'@'허용IP'  : 특정 사용자에게 명령어 권한 취소
+        4) alter user '계정명'@'허용IP' '새로운비밀번호'                     : 특정 사용자의 비밀번호 수정
+        5) drop user '계정명'@'허용IP'                                     : 특정 사용자의 계정 삭제
+        6) show grant for '계정명'@'허용IP'                                : 특정 계정의 권한 목록
+        7) select * from mysql.user                                      : 모든 계정 목록
+    - * 개발자들에게 데이터베이스 접근 권한 관리함으로써 보안, 계정마다의 데이터베이스 분리 *
+
+[ INDEX ] : 포트폴리오에 꼭 넣기
+    - 정의 : 데이터 특정 필드를 기준으로 검색을 빠르게 하기 위한 색인
+    - 목적 : select, join, order by 등 속도 향상, 대용량 데이터 조회 빠름.
+    - 주요 명령어
+        1) show index from 테이블명;                                        : 테이블의 모든 인덱스 목록 확인
+        * pk 필드 기본적으로 인덱스를 갖는다.
+        2) create index 인덱스명 on 테이블명(필드명);                          : 해당 필드명을 인덱스 생성 (단일)
+        3) create index 인덱스명 on 테이블명(필드명1, 필드명2);                 : 두 개 이상 필드명으로 인덱스 생성(복합)
+        4) drop index 인덱스명 on 테이블명;                                   : 인덱스 삭제
+        5) explain analyze 쿼리문;                                          : 쿼리 실행 계획 분석 결과
+        6) create fulltext index 인덱스명 on 테이블명(필드명);                 : * 자연어(NLP:사람의언어) 인덱스
+           select * from 테이블명 where MATCH(필드명) AGAINST('검색어')       : 일치하는 검색어만 찾음
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

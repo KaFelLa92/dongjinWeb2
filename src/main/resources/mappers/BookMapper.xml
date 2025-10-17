@@ -4,8 +4,17 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="example.실습.실습3.BookMapper">
 
-    <!-- [5, 7] 책 단일, 일괄 등록 기능 (동적쿼리, 트랜잭션 적용) -->
+    <!-- [5] 책 단일 등록 기능 (제너레이트키) -->
     <insert id="uploadBook"
+            parameterType="example.실습.실습3.BooksDto"
+            useGeneratedKeys="true"
+            keyProperty="id">
+        insert into books(title, stock)
+        values(#{title}, #{stock})
+    </insert>
+
+    <!-- [7] 책 일괄 등록 기능 (동적쿼리, 트랜잭션 적용) -->
+    <insert id="uploadAllBook"
             parameterType="list"
             useGeneratedKeys="true"
             keyProperty="id">
@@ -32,7 +41,48 @@
         </where>
     </select>
 
+    <!-- 실습5 -->
+
+    <!-- [1] 평균 재고보다 많은 재고를 가진 도서 조회 -->
+<!--    <select id=""-->
 
 
+
+    <!-- 실습6 -->
+    <!-- [1] 대출기록 상세 뷰 생성 -->
+    <update id="createDetailView"
+            parameterType="example.실습.실습3.RentalsDto">
+        create or replace view detail_view as select * from rentals r inner join books b on r.book_id = b.id
+    </update>
+
+    <!-- [2] 많은 재고를 가진 도서 조회 뷰 생성 -->
+    <update id="createMostStockView"
+            parameterType="example.실습.실습3.BooksDto">
+        create or replace view most_stock as select * from books
+        <where>
+            <if test="stock != 0">
+                and max(stock)
+            </if>
+        </where>
+    </update>
+
+    <!-- [3] 대출기록 상세 뷰 조회 -->
+    <select id="getDetailView"
+            resultType="example.실습.실습3.RentalsDto"
+            parameterType="int">
+        select * from detail_view
+        <where>
+            <if test="id != 0">
+                and id = #{rentId}
+            </if>
+        </where>
+    </select>
+
+    <!-- [4] 많은 재고를 가진 도서 조회 뷰 조회 -->
+    <select id="getMostStockView"
+            resultType="example.실습.실습3.BooksDto"
+            parameterType="int">
+        select * from most_stock
+    </select>
 
 </mapper>

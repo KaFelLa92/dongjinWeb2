@@ -56,3 +56,4 @@ alter table employee add constraint employee_name Unique (name);
 alter table employee drop constraint employee_id;
 
 select * from employee; 	-- 특정한 테이블의 레코드 정보 확인(속성값 확인)
+

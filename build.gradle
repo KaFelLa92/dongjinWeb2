@@ -47,6 +47,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-validation'
     // AOP 관점지향 프로그래밍
     implementation 'org.springframework.boot:spring-boot-starter-aop'
+    // Redis
+    implementation 'org.springframework.boot:spring-boot-starter-data-redis'
 }
 
 tasks.named('test') {

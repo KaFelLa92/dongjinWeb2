@@ -1,0 +1,52 @@
+[ 본체 ]
+    - 메모리(RAM)    : 휘발성메모리 주기억장치 이면서 실행중인 상태에서만 메모리 저장
+    - SSD/HDD(ROM)  : 비휘발성메모리 보조기억장치 이면서 비실행중인 상태에서 메모리 저장
+    * 바둑게임 설치(15GB)하면 보조기억장치에 저장 , 바둑게임 실행하면 주기억장치에 저장
+    * 보조기억장치 용량이 크고 , 주기억장치는 용량이 작고 속도 빠르다
+
+[ 개발 주요 저장 ] * 저장하고자 하는 데이터의 (실무/육하원칙) 사용처 생각
+    1) 크롬 로컬/세션스토리지      : 클라이언트(유저)가 환경에 저장 , 보안 취약 , 주로 설정 정보
+    2) 데이터베이스               : 영구저장 , 자바서버 외 DB서버 , 대용량 (별도저장/공유)
+    3) 톰캣(Spring서버) 세션 HTTP : 자바서버 저장 , 서버 과부하 , 보안 안전 , 로그인상태 (30일이내)
+    4) 레디스                    : 임시저장(캐싱) , 주로 DB조회 결과 , 실시간 정보
+    * 자율주행/AI , 서버가 통신이 미흡하거나 환경이 없을 때는 레디스 활용
+
+[ Redis ]
+    - 정의 : 인메모리 기반의 데이터 저장소
+    - 목적 : 관계형 데이터베이스가 보조기억장치이므로 빠른 메모리처리를 사용할 때
+        MySQL/Oracle : SQL
+        REDIS : NOSQL(객체지향 - GET/SET)
+    - 구조 : Key-Value 이므로 Map/JSON/DTO 구조와 비슷
+    - 캐싱 : Select 할때마다 데이터베이스 접근/요청하면 느리거나 성능 저하되므로, 한 번 Select한 결과를 캐싱
+    - 설치
+        방법1) 비설치형 : Spring 내장 Redis 인메모리
+        방법2) 설치형 : Redis
+        1. 윈도우/로컬환경 : https://github.com/redis-windows/redis-windows/releases?utm_source=chatgpt.com
+        2. 해당 버전 클릭 :
+            선택1) Redis-8.2.2-Windows-x64-msys2-with-Service.zip         : 백그라운드 실행
+            선택2) Redis-8.2.2-Windows-x64-msys2.zip                      : 직접 실행( 강의 기준 사용)
+        3. 압축풀기 -> 압출 푼 폴더내 -> 'redis-server.exe' 키면 실행됨      : 관리자권한 실행
+            -> CMD창 켜지면서 가운데 Redis 서버 PORT 확인                   : 서버 켜진 상태
+            -> CMD창 직접 닫기/종료                                        : 서버가 꺼진 상태
+            * 서버 종료되면 인메모리 사용 기반이라, 저장된 모든 정보가 사라짐.
+
+    - Redis PORT를 6379 사용한다.
+    - Spring과 Redis 연동 , https://start.spring.io/
+        1. Spring Data Redis 의존성 추가 :  -> Spring Data Redis (Access+Driver) 검색
+            implementation 'org.springframework.boot:spring-boot-starter-data-redis' 빌드 추가
+        2. application.properties 서버 연동
+            spring.data.redis.host=localhost
+            spring.data.redis.port=6379
+
+
+
+
+
+
+
+
+
+
+
+
+
