@@ -2,6 +2,8 @@ package example.day13;
 
 import lombok.*;
 
+import java.io.Serializable;
+
 @Data @Builder
 @NoArgsConstructor @AllArgsConstructor
 public class StudentDto {

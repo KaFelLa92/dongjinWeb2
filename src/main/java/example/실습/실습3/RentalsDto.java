@@ -7,8 +7,7 @@ import lombok.NoArgsConstructor;
 
 @AllArgsConstructor
 @NoArgsConstructor
-@Data
-@Builder
+@Data @Builder
 public class RentalsDto {
     private int id;
     private int book_id;

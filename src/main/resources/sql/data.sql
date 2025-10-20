@@ -77,10 +77,6 @@ INSERT INTO rentals (id, book_id, member) VALUES (1, 1, '홍길동');
 -- 인덱스 예제
 
 -- 샘플 데이터
-INSERT INTO department VALUES
-(1, '개발팀'),
-(2, '기획팀'),
-(3, '디자인팀');
 
 INSERT INTO employee (name, dept_id, salary, hire_date, email) VALUES
 ('유재석', 1, 5000, '2023-01-10', 'yu@test.com'),
