@@ -21,11 +21,11 @@
     - 캐싱 : Select 할때마다 데이터베이스 접근/요청하면 느리거나 성능 저하되므로, 한 번 Select한 결과를 캐싱
     - 설치
         방법1) 비설치형 : Spring 내장 Redis 인메모리
-        방법2) 설치형 : Redis
+        방법2) 설치형 : Redis 자체 설치 , https://redis.io.ko/
         1. 윈도우/로컬환경 : https://github.com/redis-windows/redis-windows/releases?utm_source=chatgpt.com
         2. 해당 버전 클릭 :
             선택1) Redis-8.2.2-Windows-x64-msys2-with-Service.zip         : 백그라운드 실행
-            선택2) Redis-8.2.2-Windows-x64-msys2.zip                      : 직접 실행( 강의 기준 사용)
+            선택2) Redis-8.2.2-Windows-x64-msys2.zip                      : 직접 실행( * 강의 기준 사용 * )
         3. 압축풀기 -> 압출 푼 폴더내 -> 'redis-server.exe' 키면 실행됨      : 관리자권한 실행
             -> CMD창 켜지면서 가운데 Redis 서버 PORT 확인                   : 서버 켜진 상태
             -> CMD창 직접 닫기/종료                                        : 서버가 꺼진 상태
@@ -38,6 +38,39 @@
         2. application.properties 서버 연동
             spring.data.redis.host=localhost
             spring.data.redis.port=6379
+
+    - 주 사용법
+        1. (레디스에 저장할 데이터 타입 형식의) 레디스템플릿 객체 생성한다.
+            방법1) private final RedisTemplate redisTemplate;             : 그외 타입 { key , value } , { 'student:1' , '유재석' }
+            방법2) private final StringRedisTemplate stringRedisTemplate; : 문자열 타입
+            private final RedisTemplate<String , Object> redisTemplate   : DTO/JSON 타입 호환
+
+        * RedisTemplate 사용할 경우 레디스에 저장할 데이터 타입 설정 필요하다.    : { key , value } , { 'student:1' , { sno : 1 , sname : "유재석" } }
+
+        2. 레디스에 데이터를 저장하는 방법
+            1) redisTemplate.opsForValue().set( key , value );
+            2) redisTemplate.opsForValue().set( key , value , TTL );
+            * TTL : 유효기간 : 지정한 기간/시간이 지나면 자동으로 삭제된다.
+            Duration.ofXX( 수 ) ,
+                Duration.ofSeconds( 10 ) : 10초간 유효기간
+                Duration.ofMinutes( 10 ) : 10분간 유효기간
+            * key는 절대 중복이 불가능하므로 동일한 key 넣었을 때 덮어쓰기 된다.
+
+        3. 레디스에 데이터를 호출하는 방법
+            1) Object value = redisTemplate.ops.ForValue().get( key )    : 특정한 key의 value 반환
+            2) Set<String> keys = redisTemplate.keys("*")                : 모든 key 반환
+            3) Set<String> keys = redisTemplate.keys("패턴")              : 특정 패턴의 key 반환
+            * 레디스는 key의 이름은 주로 , "의미상의단어:식별번호"
+                1) student:1 , student:2 , student:3            , student:*
+                2) phone:010-3333-3333 , phone:010-4444-4444    , phone:*
+                3) jwt:토큰번호 , jwt:토큰번호 , jwt:토큰번호        , jwt:*
+
+        4. 레디스에 데이터 삭제하는 방법
+            1) boolean result = redisTemplate.delete( key )              : 특정한 key의 key-value(엔트리) 삭제
+
+        5. 레디스 key 존재 여부 확인 방법
+            1) boolean result = redisTemplate.hasKey( key )              : 특정한 key가 존재하면 true 아니면 false 반환
+
 
 
 

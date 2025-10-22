@@ -99,3 +99,14 @@ INSERT INTO employee (name, dept_id, salary, hire_date, email) VALUES
 ('김구라', 1, 7500, '2023-11-05', 'gura@test.com'),
 ('유병재', 2, 4200, '2025-01-20', 'yoo@test.com'),
 ('김민아', 3, 3800, '2024-10-08', 'mina@test.com');
+
+-- --------------------------------------- web2 ----------------------------------------
+-- 샘플 회원 데이터 (비밀번호는 BCrypt 암호화 적용)
+INSERT INTO users (uid, upwd, uname, uphone, urole)
+VALUES
+-- test1 / 1234
+('test1', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '유재석', '010-1111-2222', 'USER'),
+-- admin / 1234
+('admin', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '관리자', '010-9999-9999', 'ADMIN'),
+-- guest / 1234
+('guest', '$2a$10$69bMrChodVYxOcvM/cUo7evsho3hw6YBJT9yepHudwBlIvi7KlV0.', '손님', '010-0000-0000', 'USER');

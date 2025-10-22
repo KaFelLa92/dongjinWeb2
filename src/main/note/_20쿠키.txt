@@ -1,0 +1,43 @@
+[ 쿠키 ]
+    1. 정의 : 클라이언트(브라우저)의 임시 저장소
+    2. 목적
+        1) 로그인 상태 유지
+        2) 사용자 맞춤 설정 : 테마 , 언어 등등 개인 설정 값
+        3) (개인)통계 또는 분석 : 방문자 행동분석 기록
+    3. 비교       저장위치        유효기간                    보안          예시
+       세션       서버           서버 종료시 삭제              높음          로그인
+       쿠키       클라이언트       설정된 기간 또는 직접 삭제     낮음         장바구니/자동로그인
+       * 활용
+       세션은 서버에 저장하므로 *보안*은 높지만 (대규모)서버에서는 과부하가 증가할 수 있다.
+       쿠키는 클라이언트에 저장하므로 *보안*은 낮지만 (대규모)서버에서는 과부하를 낮출 수 있다.
+    4. 쿠키 보안
+        1) 민감한 정보는 저장하지 않는다. ( 비밀번호 ) + 자료 암호화( JWT : 자바스크립트웹토큰 )
+        2) HttpOnly 설정 필수 : 자바스크립트 접근 차단
+        3) HttpSecure 설정 필수 : HTTPS 환경에서만 쿠키 송수신
+        4) 만료시간 설정 필수
+    5. 쿠키 사용법
+        1) Cookie cookie = new Cookie( "쿠키명" , value );    : 쿠키 생성한다.
+        2) 설정값
+            cookie.setPath(("경로"));                        : 쿠키의 접근 가능한 경로 설정
+            cookie.setMaxAge(초);                            : 쿠키의 유효시간(초)
+            cookie.setHttpOnly(true/false);                 : JS로 접근 불가능(보안강화)
+            cookie.setSecure(true/false);                   : HTTPS 환경에서만 사용하는 쿠키 설정 , 배포 단계시 true
+        3) 쿠키 등록하여 클라이언트에게 응답(보낸다)
+            HttpServletResponse response
+            response.addCookie( 내가만든쿠키 );
+        4) 쿠키 확인
+            HttpServletRequest request
+            Cookie[] cookies = request.getCookies();
+            for (Cookie c : cookies) {
+                if( c.getName().equals("쿠키명")) {
+                    String value = c.getValue()
+                }
+            }
+            // vs
+            @CookieValue("쿠키명")
+        5) 쿠키 삭제
+            Cookie 내가만든쿠키 = new Cookie( "삭제할쿠키명" , null );
+            cookie.setHttpOnly(true);
+            cookie.setSecure(false);
+            cookie.setPath(("/"));
+            cookie.setMaxAge(0);
