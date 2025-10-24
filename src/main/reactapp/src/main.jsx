@@ -96,5 +96,10 @@ import Component13 from './example/day05/Component13';
 // );
 
 // day08
-import Component15 from './example/day08/Component15';
-create.render(<Component15 />);
+// import Component15 from './example/day08/Component15';
+// create.render(<Component15 />);
+
+
+// web2
+import App from './web2/App';
+create.render(<App />);

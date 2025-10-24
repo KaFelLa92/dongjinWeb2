@@ -1,0 +1,60 @@
+○ 인증 : 사용자가 누구인지 확인하는 과정(핸드폰/이메일 인증코드 , 로그인상태)
+○ 인가 : 인증된 사용자가 접근 권한 확인하는 과정
+○ 방법
+    1) 세션 : web1 , 스프링 시큐리티
+    2) 쿠키 : web2 , 부가적인 보안 (+JWT)
+
+[ JWT ]
+    1. 정의 : JSON 형식의 데이터를 안전하게 사용하기 위한
+    2. 목적 : 주로 웹/앱에서 인증과 권한 부여/확인 사용
+    3. 장점 :
+        1) HTTP지원(헤더 정보에 토큰 정보 담을 수 있다)
+        2) 보안 : 인증(서명)된 토큰을 중간에 공격(해킹) 방지 , 알고리즘 HS256 (HTTP JSON XML)
+        3) 무상태 : 서버가 직접 관리하지 않고 클라이언트에서 확장성 좋음
+    4. 형태 :
+        헤더정보.클레임.서명
+        eyJhbGciOiJIUzI1NiJ9.eyJ1aWQiOiJ0ZXN0MSIsInVyb2xlIjoiVVNFUiIsImlhdCI6MTc2MTE4MDc4MywiZXhwIjoxNzYxMTg0MzgzfQ.vHqeqskWuCfE9uKdVSsl4c9VrT31srdlYwPk_YG6MGY
+        1) 헤더 : 알고리즘 정보 , JWT 타입
+        2) 페이로드 : 실제 정보(클레임)값 , 발급시간
+        3) 서명 : 헤더와 페이로드를 서명하는 알고리즘( 비밀키 사용된다 )
+        * 비밀키 : 개발자가 임의의 값으로 정의한다. VS 난수(비크립트)
+    5. 확장
+        1) + 쿠키     : 클라이언트 저장
+        2) + 레디스    : NOSQL 서버 저장 , 서로다른 (자바톰캣스프링)서버 간의 토큰(로그인정보) 공유
+            8080 : 회원서비스 , 8081 : 게시판서비스 , 8082 : 제품서비스
+    6. 사용법
+        1) 설치(의존성)
+            implementation 'io.jsonwebtoken:jjwt-api:0.12.6'
+            runtimeOnly 'io.jsonwebtoken:jjwt-impl:0.12.6'
+            runtimeOnly 'io.jsonwebtoken:jjwt-jackson:0.12.6'
+        2) 비밀키
+            private String secret = "80419273645108293746518204937465";
+            private Key secretKey = Keys.hmacShaKeyFor( secret.getBytes( StandardCharsets.UTF_8) );
+        3) 토큰
+            토큰 생성 :
+                String token = Jwts.builder()
+                                .claim("key" , data)
+                                .setIssuedAt( 현재시간 )
+                                .setExpiration( 만료시간 )
+                                .signWith(secretKey , SignatureAlgorithm.HS256)
+                                .compact();
+            토큰 검증 :
+                Jwts.parser()
+                                .setSigningKey( 비밀키 )
+                                .build()
+                                .parseClaimsJws( 검증할토큰 );
+            토큰 값 호출 :
+                 Claims claims = Jwts.parser()
+                                    .setSigningKey( 비밀키 )
+                                    .build()
+                                    .parseClaimsJws( 검증할토큰 )
+                                    .getBody();
+
+
+
+
+
+
+
+
+

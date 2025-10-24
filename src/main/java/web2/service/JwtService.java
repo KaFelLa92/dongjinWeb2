@@ -5,6 +5,7 @@ import io.jsonwebtoken.JwtException;
 import io.jsonwebtoken.Jwts;
 import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +17,7 @@ import java.util.Date;
 @Transactional
 public class JwtService {
 
-    // [1] 개발자가 비밀키 정의 , 32이상의 문자로 구성
+    // [1] 개발자가 비밀키 정의 , 32글자 이상의 문자로 구성
     private String secret = "80419273645108293746518204937465";
     // [2] 개발자가 정의한 비밀키를 이용한 sha-256 알고리즘 적용
     private Key secretKey = Keys.hmacShaKeyFor( secret.getBytes( StandardCharsets.UTF_8) );

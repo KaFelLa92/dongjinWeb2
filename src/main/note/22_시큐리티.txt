@@ -1,0 +1,21 @@
+[ 스프링 시큐리티 ]
+    1. 정의 : spring 기반의 인증과 인가 제공하는 라이브러리
+    2. 대표기능 : 로그인 , 로그아웃 , 소셜로그인 , CSRF공격 방지 , 토큰 기반 지원 등등
+    3. 설치 : implementation 'org.springframework.boot:spring-boot-starter-security'
+    * 설치와 동시에 만들어진 다수 필터(유효성검사) 서버에 적용된다 *
+    4. 시큐리티 커스텀 ( 버전[3.x]과 상황에 따른 방법이 다양 )
+
+        1) HTTP 요청 필터
+            http.authorizeHttpRequests( 매개변수 -> 매개변수.requestMatchers("경로").권한함수 );
+            - 권한함수 : .hasRole("권한명") , hasAnyRole("권한명" , "권한명") , .permitAll() : 모든권한 (공개용)
+                vs 각 Controller에서 @PreAuthorize("권한")
+        2) CSRF 필터
+            http.csrf( 매개변수 -> 매개변수.ignoringRequestMatchers("csrf제외할경로") );
+            vs
+            http.csrf( 매개변수 -> 매개변수.disable() ); (* 개발단계에서 권장)
+        [*] 인증 방법에 따라 달라짐 web2 : 쿠키 + 토큰
+        3) 시큐리티 세션 필터 종료
+            http.sessionManagement(매개변수 -> 매개변수.sessionCreationPolicy( SessionCreationPolicy.STATELESS ) );
+        4) 시큐리티 토큰 필터 재정의
+             http.addFilterBefore( 내가만든토큰필터 , UsernamePasswordAuthenticationFilter.class );
+
