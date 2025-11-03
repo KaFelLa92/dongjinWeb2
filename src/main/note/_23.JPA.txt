@@ -1,0 +1,49 @@
+[ 데이터베이스 ] : SQL(MySQL) , NOSQL(REDIS)
+
+[ JDBC ] : 자바와 DB 연동 인터페이스
+    console/web1 7/8월 : DAO( JDBC )
+    web2 9/10월 : MyBatis
+    app 11월 : **JPA**
+
+[ ORM ] : O:object , R : Relational , M : Mapping : 객체관계매핑
+    1. 정의 : 객체지향 프로그래밍에서 사용되는 객체와 DB(관계형데이터베이스) 매핑(연결)
+    2. 목적 : 편리성 제공
+    3. 사용처 : MyBatis , JPA 등
+
+[ Hibernate ] :
+    1. 정의 : 자바에서 ORM 구현한 라이브러리
+    2. 목적 : SQL 없이 순수 자바만으로 데이터베이스 처리한다.
+    3. 기능 : 1) CRUD 2) 타입변환 3) 부가기능(검색/정렬/페이징처리) 등등
+
+[ JPA ] J : java , P : persistence , A : api
+    자바 영속성 API
+    1. 정의 : 자바에서 ORM 사용할 때 표준 API , 자바에서 다양한 라이브러리 제공(+Hibernate)
+    2. 설치 : https://start.spring.io/ 에서 JPA 검색 후 의존성 다운로드
+
+[ Entity ]
+    1. 데이터베이스 테이블과 매핑된 클래스
+    Entity클래스 = DB테이블 , Entity객체 = 레코드
+        - 클래스 = 객체의 설계도
+        class Member {
+            int id;
+            String name;
+        }
+        - 객체 = 클래스의 인스턴스
+        new Member( 1 , "유재석" )
+    2. 사용법
+        1) 선언 : 클래스 위에 @Entity 주입한다.
+        + Entity 1개당 @Id 1개는 필수다. ( primary key )
+        2) Entity 매핑 설정 , application.properties
+
+[ 리포지토리 ] JPA Repository
+    1. 정의 : 기본적인 CRUD 작업을 제공하는 인터페이스 , +동적쿼리
+    2. 사용법 :
+        1) 인터페이스 생성
+        2) extends JpaRepository <T , ID> 상속받는다.
+        3) @Repository
+
+
+
+
+
+
