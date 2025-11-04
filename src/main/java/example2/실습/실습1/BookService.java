@@ -43,7 +43,7 @@ public class BookService {
     // 엔티티 setter 시 , 자동으로 DB 변경됨
     public BookEntity put (BookEntity bookEntity) {
         // 1) 수정할 엔티티를 bookId로 조회한다.
-        Optional<BookEntity > optional = bookRepository.findById(bookEntity.getBookId());
+        Optional<BookEntity> optional = bookRepository.findById(bookEntity.getBookId());
         // 2) 본문이 존재하는지 검사한다.
         if (optional.isPresent()) {
             BookEntity entity = optional.get();             // 결과에 bookId가 존재하면
