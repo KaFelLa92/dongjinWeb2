@@ -21,6 +21,8 @@ public class MovieDto {
     private String director;
     private String releaseDate;
     private double rating;
+    private String created_at;
+    private String updated_at;
     
     // dto에서 엔티티로 / 컨트롤러에서 서비스로
     public MovieEntity toEntity() {

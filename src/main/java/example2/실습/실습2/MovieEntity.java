@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data @Builder
 @AllArgsConstructor
 @NoArgsConstructor
-public class MovieEntity {
+public class MovieEntity extends BaseTime { // extends BaseTime 넣어야 createdAt, updatedAt 반영됨
     /*
     [조건 1] 엔티티 설계 : “영화(Movie)” 정보를 저장할 엔티티 클래스를 생성한다.
     - 각 필드의 역할과 데이터 타입을 적절히 설정한다.
@@ -46,7 +46,8 @@ public class MovieEntity {
                 .director( this.director )
                 .releaseDate( this.releaseDate )
                 .rating( this.rating )
-
+                .created_at( this.getCreatedAt().toString())
+                .updated_at( this.getUpdatedAt().toString())
                 .build();
     }
 
