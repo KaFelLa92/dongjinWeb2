@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping("/api/goods")
 @RequiredArgsConstructor
+@CrossOrigin( origins = "*")   // cors 모두 열어두기
 public class GoodsController {
 
     // [*] DI
