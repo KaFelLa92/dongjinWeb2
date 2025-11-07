@@ -113,6 +113,6 @@ VALUES
 
 -- JPA DAY03 샘플
 -- ============================================
-INSERT INTO ecategory (cno, cname) VALUES (1, '공지사항');
-INSERT INTO ecategory (cno, cname) VALUES (2, '자유게시판');
-INSERT INTO ecategory (cno, cname) VALUES (3, 'Q&A게시판');
+--INSERT INTO ecategory (cno, cname) VALUES (1, '공지사항');
+--INSERT INTO ecategory (cno, cname) VALUES (2, '자유게시판');
+--INSERT INTO ecategory (cno, cname) VALUES (3, 'Q&A게시판');

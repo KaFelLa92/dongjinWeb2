@@ -31,7 +31,7 @@ public class MovieService {
         MovieEntity movieEntity = movieDto.toEntity();
         // 3. .save() 이용한 엔티티 영속화
         MovieEntity savedEntity = movieRepository.save(movieEntity);
-        // 4. PK 생성 시, 생성된 엔티티를 dto롤 변환 및 반환
+        // 4. PK 생성 시, 생성된 엔티티를 dto로 변환 및 반환
         if ( savedEntity.getMovieId() >= 0) {
             return savedEntity.toDto();
         }
