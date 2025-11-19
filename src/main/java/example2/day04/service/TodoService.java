@@ -7,6 +7,7 @@ import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import example2.day04.model.dto.TodoDto;
@@ -21,6 +22,46 @@ import lombok.RequiredArgsConstructor;
 public class TodoService {
     // [*] DI
     private final TodoRepository todoRepository;
+
+    // 전체 조회
+    public List<TodoDto> findAll() {
+        return todoRepository.findAll().stream()
+                .map(TodoEntity :: toDto )
+                .collect(Collectors.toList());
+    }
+
+    // 개별 삭제
+    public boolean delete( int id ){
+        if( todoRepository.existsById( id )){
+            todoRepository.deleteById(id);
+            return true;
+        }
+        return false;
+    }
+
+    // 개별 조회
+    public TodoDto findById(int id){
+        Optional< TodoEntity > optional = todoRepository.findById( id );
+        if ( optional.isPresent()){
+            TodoEntity todoEntity = optional.get();
+            return todoEntity.toDto();
+        }
+        return null;
+    }
+
+    // 개별 수정
+    public TodoDto update (TodoDto todoDto) {
+        Optional< TodoEntity > optional = todoRepository.findById( todoDto.getId() );
+        if ( optional.isPresent()) {
+            TodoEntity todoEntity = optional.get();
+            // JPA는 수정함수가 별도 존재하지 않고, setter 이용한 영속성 수정
+            todoEntity.setTitle( todoDto.getTitle());
+            todoEntity.setContent( todoDto.getContent());
+            todoEntity.setDone( todoDto.isDone());  // boolean setter는 isXXX로 시작함
+            return todoEntity.toDto(); // 수정된 엔티티를 dto로 반환
+        }
+        return null;
+    }
 
     // [1] TodoRepository 2-1 , 3-1
     public List<TodoDto> query1 ( String title ) {
